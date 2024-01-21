@@ -1,6 +1,6 @@
-const token = `${(secrets.DiscorBotToken)}`;
-const clientId = `${(secrets.DiscordClientId)}`;
-const clientSecret = `${(secrets.DiscordClientSecret)}`
+const token = `${(secrets.DISCORBOTTOKEN)}`;
+const clientId = `${(secrets.DISCORDCLIENTID)}`;
+const clientSecret = `${(secrets.DISCORDCLIENTSECRET)}`
 const fs = require('node:fs');
 const path = require('node:path');
 const { Client, GatewayIntentBits, Collection, Partials } = require('discord.js');
