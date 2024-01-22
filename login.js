@@ -12,9 +12,12 @@ document.querySelector('form').addEventListener('submit', (event) => {
     window.location.href = './pages/panel.html';
   } else if (username !== loginUsername && password === loginPasskey) {
     // if the entered username is incorrect, display an error message for the username
-    console.log('Username or Password is incorrect');
+    console.log('Username/Password is incorrect');
   } else if (username === loginUsername && password !== loginPasskey) {
     // if the entered password is incorrect, display an error message for the password
-    console.log('Username or Password is incorrect');
+    console.log('Username/Password is incorrect');
+  } else if (username !== loginUsername && password !== loginPasskey) {
+    // if the entered password is incorrect, display an error message for the password
+    console.log('Username/Password is incorrect');
   }
 });
