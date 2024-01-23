@@ -29,7 +29,7 @@ let stopBtn, restartBtn;
 
 startBtn.addEventListener('click', () => {
   const { spawn } = require('child_process');
-  const botProcess = spawn('node', ['../bot/index.js'], { cwd: __dirname });
+  const botProcess = spawn('node', ['./bot/index.js'], { cwd: __dirname });
   startBtn.style.display = 'none';
   stopBtn = document.createElement('button'); 
   stopBtn.setAttribute('id', 'stop-btn'); 
@@ -47,7 +47,7 @@ startBtn.addEventListener('click', () => {
   restartBtn.textContent = 'RESTART';
   restartBtn.addEventListener('click', () => { 
     botProcess.kill();
-    const newBotProcess = spawn('node', ['../bot/index.js'], { cwd: __dirname }); botProcess = newBotProcess; });
+    const newBotProcess = spawn('node', ['./bot/index.js'], { cwd: __dirname }); botProcess = newBotProcess; });
   deployBtn.style.display = 'none';
   deleteBtn.style.display = 'none'; 
   startBtn.parentNode.insertBefore(stopBtn, startBtn.nextSibling);
@@ -56,10 +56,10 @@ startBtn.addEventListener('click', () => {
 
 deployBtn.addEventListener('click', () => {
   const { spawn } = require('child_process');
-  spawn('node', ['../bot/deploy-commands.js'], { cwd: __dirname }); 
+  spawn('node', ['./bot/deploy-commands.js'], { cwd: __dirname }); 
 });
 
 deleteBtn.addEventListener('click', () => {
   const { spawn } = require('child_process');
-  spawn('node', ['../bot/delete-commands.js'], { cwd: __dirname }); 
+  spawn('node', ['./bot/delete-commands.js'], { cwd: __dirname }); 
 });
