@@ -1,5 +1,5 @@
 const loginPasskey = process.env.LOGINPASSKEY;
-const loginUsername = dash0908;
+const loginUsername = 'dash0908';
 
 document.querySelector('form').addEventListener('submit', (event) => {
   event.preventDefault(); // prevent the form from submitting
@@ -10,14 +10,8 @@ document.querySelector('form').addEventListener('submit', (event) => {
   if (username === loginUsername && password === loginPasskey) {
     // if the entered username and password are correct, redirect to panel.html
     window.location.href = './pages/panel.html';
-  } else if (username !== loginUsername && password === loginPasskey) {
-    // if the entered username is incorrect, display an error message for the username
-    console.log('Username/Password is incorrect');
-  } else if (username === loginUsername && password !== loginPasskey) {
-    // if the entered password is incorrect, display an error message for the password
-    console.log('Username/Password is incorrect');
-  } else if (username !== loginUsername && password !== loginPasskey) {
-    // if the entered password is incorrect, display an error message for the password
+  } else {
+    // if the entered username or password is incorrect, display an error message
     console.log('Username/Password is incorrect');
   }
 });
