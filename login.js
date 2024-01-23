@@ -1,4 +1,4 @@
-const { loginPasskey } = require('./bot/index.json');
+const loginPasskey = process.env.LoginPasskey;
 const loginUsername = dash0908;
 
 document.querySelector('form').addEventListener('submit', (event) => {
