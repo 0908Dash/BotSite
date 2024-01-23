@@ -1,6 +1,5 @@
-const token = `${(secrets.DISCORBOTTOKEN)}`;
-const clientId = `${(secrets.DISCORDCLIENTID)}`;
-const clientSecret = `${(secrets.DISCORDCLIENTSECRET)}`
+const token = process.env.DISCORDBOTTOKEN;
+const clientId = process.env.DISCORDCLIENTID;
 const fs = require('node:fs');
 const path = require('node:path');
 const { Client, GatewayIntentBits, Collection, Partials } = require('discord.js');
@@ -61,6 +60,5 @@ client.login(token);
 
 module.exports = {
 	token,
-	clientId,
-	ClientSecret
+	clientId
 }
