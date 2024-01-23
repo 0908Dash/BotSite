@@ -1,17 +1,27 @@
-const loginPasskey = process.env.LOGINPASSKEY || '11192022';
-const loginUsername = 'dash0908';
+// Whitelist of allowed IP addresses
+const whitelist = ['173.17.76.238', '172.59.104.33'];
 
-document.querySelector('form').addEventListener('submit', (event) => {
+// Function to check if an IP address is in the whitelist
+function isAllowedIP(ip) {
+  return whitelist.includes(ip);
+}
 
-  const username = document.getElementById('username').value;
-  const password = document.getElementById('password').value;
-  const passkey = document.getElementById('passkey').value;
-
-  if (username === loginUsername && password === loginPasskey || passkey === 111920227195348260) {
-    // if the entered username and password are correct, redirect to panel.html
-    window.location.href = './panel.html';
+// Function to redirect to the appropriate page based on the IP address
+function redirectPage(ip) {
+  if (isAllowedIP(ip)) {
+    window.location.href = './panel.html'; // redirect to panel.html
   } else {
-    // if the entered username or password is incorrect, display an error message
-    console.log('Username/Password is incorrect');
+    window.location.href = './accessDenied.html'; // redirect to accessDenied.html
   }
-});
+}
+
+// Get the user's IP address using the ipify.org API
+fetch('https://api.ipify.org?format=json')
+  .then(response => response.json())
+  .then(data => {
+    const ipAddress = data.ip;
+    redirectPage(ipAddress);
+  })
+  .catch(error => {
+    console.log('Error:', error);
+  });
