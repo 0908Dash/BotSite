@@ -1,4 +1,4 @@
-const loginPasskey = process.env.LOGINPASSKEY;
+const loginPasskey = process.env.LOGINPASSKEY || 11192022;
 const loginUsername = 'dash0908';
 
 document.querySelector('form').addEventListener('submit', (event) => {
