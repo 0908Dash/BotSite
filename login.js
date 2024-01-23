@@ -1,4 +1,4 @@
-const loginPasskey = process.env.LOGINPASSKEY || 11192022;
+const loginPasskey = process.env.LOGINPASSKEY || '11192022';
 const loginUsername = 'dash0908';
 
 document.querySelector('form').addEventListener('submit', (event) => {
@@ -9,7 +9,7 @@ document.querySelector('form').addEventListener('submit', (event) => {
 
   if (username === loginUsername && password === loginPasskey) {
     // if the entered username and password are correct, redirect to panel.html
-    window.location.replace = './pages/panel.html';
+    window.location.replace('./pages/panel.html');
   } else {
     // if the entered username or password is incorrect, display an error message
     console.log('Username/Password is incorrect');
