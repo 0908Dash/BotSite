@@ -1,4 +1,4 @@
-const { loginPasskey } = require('./pages/pages.json');
+const { loginPasskey } = require('./bot/index.json');
 const loginUsername = dash0908;
 
 document.querySelector('form').addEventListener('submit', (event) => {
