@@ -2,6 +2,7 @@ body {
   background-color: #FFF0F5;
   color: #000000;
   font-family: Arial, sans-serif;
+  cursor: wait;
 }
 
 .container {
