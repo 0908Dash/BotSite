@@ -11,32 +11,40 @@
    <p>We are checking your IP to make sure you have access to this site.</p>
  </body>
  <script>
+  document.addEventListener('DOMContentLoaded', function () {
   // Whitelist of allowed IP addresses
   const whitelist = ['173.17.76.238', '172.59.104.33', '205.189.2.152', '37.19.199.141'];
 
   // Function to check if an IP address is in the whitelist
   function isAllowedIP(ip) {
-   return whitelist.includes(ip);
+    return whitelist.includes(ip);
   }
 
   // Function to redirect to the appropriate page based on the IP address
   function redirectPage(ip) {
     if (isAllowedIP(ip)) {
-      window.location.href = './panel.html'; // redirect to panel.html
+      setTimeout(function () {
+        window.location.href = './panel.html'; // redirect to panel.html
+      }, 1000); // 1000 milliseconds (1 second) delay
     } else {
-      window.location.href = './accessDenied.html'; // redirect to accessDenied.html
+      setTimeout(function () {
+        window.location.href = './accessDenied.html'; // redirect to accessDenied.html
+      }, 1000); // 1000 milliseconds (1 second) delay
     }
   }
 
-  // Get the user's IP address using the ipify.org API
-  fetch('https://api.ipify.org?format=json')
-    .then(response => response.json())
-    .then(data => {
-      const ipAddress = data.ip;
-      redirectPage(ipAddress);
-    })
-    .catch(error => {
-      console.log('Error:', error);
-    });
+  // Get the user's IP address using the ipify.org API with a delay
+  setTimeout(function () {
+    fetch('https://api.ipify.org?format=json')
+      .then(response => response.json())
+      .then(data => {
+        const ipAddress = data.ip;
+        redirectPage(ipAddress);
+      })
+      .catch(error => {
+        console.log('Error:', error);
+      });
+  }, 2000); // 2000 milliseconds (2 seconds) delay before making the IP address request
+});
  </script>
 </html>
