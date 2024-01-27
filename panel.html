@@ -1,124 +1,135 @@
 <html lang="en">
   <head>
-   <meta charset="UTF-8">
-   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <title>CSBot Panel</title>
-   <link rel="stylesheet" href="panel.css">
- </head>
+    <!-- Meta tags -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Title and Stylesheet -->
+    <title>CSBot Panel</title>
+    <link rel="stylesheet" href="panel.css">
+  </head>
   <body>
+    <!-- Heading -->
     <h1>CSBot's Panel</h1>
+    <!-- Main Container -->
     <div class="components">
-      <label class="switch"> <input type="checkbox" id="dark-mode-toggle"> <span class="slider round"></span> </label>
-      <div class="button-container"> 
-        <button id="start-btn" class="rounded-btn">START</button> 
+      <!-- Dark Mode Toggle -->
+      <label class="switch">
+        <input type="checkbox" id="dark-mode-toggle">
+        <span class="slider round"></span>
+      </label>
+
+      <!-- Button Container -->
+      <div class="button-container">
+        <!-- Buttons -->
+        <button id="start-btn" class="rounded-btn">START</button>
         <button id="deploy-btn" class="rounded-btn">DEPLOY-COMMANDS</button>
         <button id="delete-btn" class="rounded-btn">DELETE-COMMANDS</button>
       </div>
+
+      <!-- Console Container -->
       <div class="console-container">
+        <!-- Console Textarea -->
         <textarea id="console" rows="10" cols="50" readonly></textarea>
+        <!-- Console Form -->
         <form id="console-form">
+          <!-- Console Input -->
           <input type="text" id="console-input" placeholder="Input Here" autocomplete="on">
+          <!-- Console Submit Button -->
           <button type="submit" id="console-submit-btn" class="rounded-btn">SEND</button>
         </form>
       </div>
     </div>
   </body>
   <script>
-//--------------------------------------------------------------------------------------
+    //-------------------------- Override Console Log Function
+    const consoleTextarea = document.getElementById('console');
+
+    console.log = function (message) {
+      window.originalConsoleLog(message);
+      consoleTextarea.value += `${message}\n`;
+    };
+
+    window.originalConsoleLog = console.log;
+
+    //-------------------------- Dark Mode Toggle
     const toggleSwitch = document.querySelector('#dark-mode-toggle');
 
-function switchTheme(event) {
-  if (event.target.checked) {
-    document.documentElement.setAttribute('data-theme', 'dark');
-    localStorage.setItem('theme', 'dark');
-  } else {
-    document.documentElement.setAttribute('data-theme', 'light');
-    localStorage.setItem('theme', 'light');
-  }
-}
-toggleSwitch.addEventListener('change', switchTheme, false);
+    function switchTheme(event) {
+      if (event.target.checked) {
+        document.documentElement.setAttribute('data-theme', 'dark');
+        localStorage.setItem('theme', 'dark');
+      } else {
+        document.documentElement.setAttribute('data-theme', 'light');
+        localStorage.setItem('theme', 'light');
+      }
+    }
 
-const currentTheme = localStorage.getItem('theme') || 'light';
+    toggleSwitch.addEventListener('change', switchTheme, false);
 
-if (currentTheme) {
-  document.documentElement.setAttribute('data-theme', currentTheme);
+    const currentTheme = localStorage.getItem('theme') || 'light';
 
-  if (currentTheme === 'dark') {
-    toggleSwitch.checked = true;
-  }
-}
+    if (currentTheme) {
+      document.documentElement.setAttribute('data-theme', currentTheme);
 
-//-----------------------------------------------------------------------------------------
+      if (currentTheme === 'dark') {
+        toggleSwitch.checked = true;
+      }
+    }
 
-const startBtn = document.getElementById('start-btn');
-const deployBtn = document.getElementById('deploy-btn');
-const deleteBtn = document.getElementById('delete-btn');
+    //-------------------------- Button Actions
+    const startBtn = document.getElementById('start-btn');
+    const deployBtn = document.getElementById('deploy-btn');
+    const deleteBtn = document.getElementById('delete-btn');
 
-startBtn.addEventListener('click', () => {
-  // Make a request to your hosted server to start the bot
-  makeRequest('https://4x7xb1xb-1119.use2.devtunnels.ms/start-bot');
-});
-
-deployBtn.addEventListener('click', () => {
-  // Make a request to your hosted server to deploy commands
-  makeRequest('https://4x7xb1xb-1119.use2.devtunnels.ms/deploy-commands');
-});
-
-deleteBtn.addEventListener('click', () => {
-  // Make a request to your hosted server to delete commands
-  makeRequest('https://4x7xb1xb-1119.use2.devtunnels.ms/delete-commands');
-});
-
-function makeRequest(endpoint) {
-  fetch(endpoint)
-    .then(response => response.json())
-    .then(data => {
-      console.log(`Action completed: ${data.status}`);
-    })
-    .catch(error => {
-      console.error(`Error executing action: ${error}`);
+    startBtn.addEventListener('click', () => {
+      makeRequest('https://4x7xb1xb-1119.use2.devtunnels.ms/start-bot');
     });
-}
 
-//---------------------------------------------------------------------------------
-    
-  // Function to perform a health check on the server
-  function performHealthCheck() {
-    fetch('https://4x7xb1xb-1119.use2.devtunnels.ms/')
-      .then(response => {
-        if (response.ok) {
-          console.log('Server is reachable');
-        } else {
-          console.error('Server is not reachable');
-          // Display a message indicating connection loss
+    deployBtn.addEventListener('click', () => {
+      makeRequest('https://4x7xb1xb-1119.use2.devtunnels.ms/deploy-commands');
+    });
+
+    deleteBtn.addEventListener('click', () => {
+      makeRequest('https://4x7xb1xb-1119.use2.devtunnels.ms/delete-commands');
+    });
+
+    function makeRequest(endpoint) {
+      fetch(endpoint)
+        .then(response => response.json())
+        .then(data => {
+          console.log(`Action completed: ${data.status}`);
+        })
+        .catch(error => {
+          console.error(`Error executing action: ${error}`);
+        });
+    }
+
+    //-------------------------- Health Check
+    function performHealthCheck() {
+      fetch('https://4x7xb1xb-1119.use2.devtunnels.ms/')
+        .then(response => {
+          if (response.ok) {
+            console.log('Server is reachable');
+          } else {
+            console.error('Server is not reachable');
+            displayMessage('Connection lost. Please check your internet connection.');
+          }
+        })
+        .catch(error => {
+          console.error('Error during health check:', error);
           displayMessage('Connection lost. Please check your internet connection.');
-        }
-      })
-      .catch(error => {
-        console.error('Error during health check:', error);
-        // Display a message indicating connection loss
-        displayMessage('Connection lost. Please check your internet connection.');
-      });
-  }
+        });
+    }
 
-  // Function to display a message in the console
-  function displayMessage(message) {
-    console.log(message);
-  }
+    function displayMessage(message) {
+      console.log(message);
+    }
 
-  // Perform the health check every 30 seconds
-  setInterval(performHealthCheck, 30000); // 30000 milliseconds (30 seconds) interval
+    setInterval(performHealthCheck, 30000);
+    setTimeout(performHealthCheck, 2000);
 
-  // Perform the initial health check after a delay
-  setTimeout(performHealthCheck, 2000); // 2000 milliseconds (2 seconds) delay
-
-  // Display a message every 30 minutes
-  setInterval(function () {
-    displayMessage('Displaying a message every 30 minutes.');
-  }, 1800000); // 1800000 milliseconds (30 minutes) interval
-
-//----------------------------------------------------------------------------------------
-</script>
-
+    setInterval(function () {
+      displayMessage('Displaying a message every 30 minutes.');
+    }, 1800000);
   </script>
 </html>
