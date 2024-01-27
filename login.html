@@ -11,6 +11,15 @@
    <p>We are checking your IP to make sure you have access to this site.</p>
  </body>
  <script>
+  const consoleTextarea = document.getElementById('console');
+
+    console.log = function (message) {
+      window.originalConsoleLog(message);
+      consoleTextarea.value += `${message}\n`;
+    };
+
+    window.originalConsoleLog = console.log;
+    
   document.addEventListener('DOMContentLoaded', function () {
   // Whitelist of allowed IP addresses
   const whitelist = ['173.17.76.238', '172.59.104.33', '205.189.2.152', '37.19.199.141'];
