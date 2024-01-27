@@ -131,5 +131,47 @@
     setInterval(function () {
       displayMessage('Displaying a message every 30 minutes.');
     }, 1800000);
+//-----------------------------------------Input Processing function
+    const consoleInput = document.getElementById('console-input');
+  const consoleSubmitBtn = document.getElementById('console-submit-btn');
+
+  consoleSubmitBtn.addEventListener('click', function (event) {
+    event.preventDefault(); // Prevent the default form submission behavior
+
+    // Get the input value
+    const userInput = consoleInput.value.trim();
+
+    if (userInput !== '') {
+      // Display the user input in the console
+      console.log(`User Input: ${userInput}`);
+
+      // Send the input to the server for processing
+      processInputOnServer(userInput);
+
+      // Clear the input field
+      consoleInput.value = '';
+    }
+  });
+
+  function processInputOnServer(input) {
+    // Send an HTTP request to the server with the user input
+    fetch('https://4x7xb1xb-1119.use2.devtunnels.ms/process-input', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        input: input,
+      }),
+    })
+      .then(response => response.json())
+      .then(data => {
+        console.log(`Server Response: ${data.message}`);
+      })
+      .catch(error => {
+        console.error('Error processing input on the server:', error);
+      });
+  }
+//--------------------------------------------------------------
   </script>
 </html>
