@@ -24,6 +24,7 @@
     </div>
   </body>
   <script>
+//--------------------------------------------------------------------------------------
     const toggleSwitch = document.querySelector('#dark-mode-toggle');
 
 function switchTheme(event) {
@@ -46,6 +47,8 @@ if (currentTheme) {
     toggleSwitch.checked = true;
   }
 }
+
+//-----------------------------------------------------------------------------------------
 
 const startBtn = document.getElementById('start-btn');
 const deployBtn = document.getElementById('deploy-btn');
@@ -76,5 +79,46 @@ function makeRequest(endpoint) {
       console.error(`Error executing action: ${error}`);
     });
 }
+
+//---------------------------------------------------------------------------------
+    
+  // Function to perform a health check on the server
+  function performHealthCheck() {
+    fetch('https://your-server/health-check')
+      .then(response => {
+        if (response.ok) {
+          console.log('Server is reachable');
+        } else {
+          console.error('Server is not reachable');
+          // Display a message indicating connection loss
+          displayMessage('Connection lost. Please check your internet connection.');
+        }
+      })
+      .catch(error => {
+        console.error('Error during health check:', error);
+        // Display a message indicating connection loss
+        displayMessage('Connection lost. Please check your internet connection.');
+      });
+  }
+
+  // Function to display a message in the console
+  function displayMessage(message) {
+    console.log(message);
+  }
+
+  // Perform the health check every 30 seconds
+  setInterval(performHealthCheck, 30000); // 30000 milliseconds (30 seconds) interval
+
+  // Perform the initial health check after a delay
+  setTimeout(performHealthCheck, 2000); // 2000 milliseconds (2 seconds) delay
+
+  // Display a message every 30 minutes
+  setInterval(function () {
+    displayMessage('Displaying a message every 30 minutes.');
+  }, 1800000); // 1800000 milliseconds (30 minutes) interval
+
+//----------------------------------------------------------------------------------------
+</script>
+
   </script>
 </html>
