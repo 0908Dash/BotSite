@@ -84,11 +84,19 @@
     const startBtn = document.getElementById('start-btn');
     const stopBtn = document.getElementById('stop-btn');
     const deployBtn = document.getElementById('deploy-btn');
-    const restartBtn = document.getElementById('restart-Btn');
+    const restartBtn = document.getElementById('restart-btn'); 
     const deleteBtn = document.getElementById('delete-btn');
+
+    // Set initial display property for stop and restart buttons
+    stopBtn.style.display = 'none';
+    restartBtn.style.display = 'none';
 
     startBtn.addEventListener('click', () => {
       makeRequest('https://4x7xb1xb-1119.use2.devtunnels.ms/start-bot');
+
+      // Show the stop and restart buttons after starting the bot
+      stopBtn.style.display = 'inline-block';
+      restartBtn.style.display = 'inline-block';
     });
 
     stopBtn.addEventListener('click', () => {
