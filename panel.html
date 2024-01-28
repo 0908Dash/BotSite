@@ -30,20 +30,29 @@
         </ul>
       </div>
 
-      <!-- Console Container -->
-      <div class="console-container">
-        <!-- Console Textarea -->
-        <textarea id="console" rows="10" cols="50" readonly></textarea>
-        <!-- Console Form -->
-        <form id="console-form">
-          <!-- Console Input -->
-          <input type="text" id="console-input" placeholder="Input Here" autocomplete="on">
-          <!-- Console Submit Button -->
-          <button type="submit" id="console-submit-btn" class="rounded-btn">SEND</button>
-        </form>
+      <!-- Console and Stopwatch Container -->
+      <div class="console-stopwatch-container">
+        <!-- Console Container -->
+        <div class="console-container">
+          <!-- Console Textarea -->
+          <textarea id="console" rows="10" cols="50" readonly></textarea>
+          <!-- Console Form -->
+          <form id="console-form">
+            <!-- Console Input -->
+            <input type="text" id="console-input" placeholder="Input Here" autocomplete="on">
+            <!-- Console Submit Button -->
+            <button type="submit" id="console-submit-btn" class="rounded-btn">SEND</button>
+          </form>
+        </div>
+
+        <!-- Stopwatch Container -->
+        <div class="stopwatch-container">
+          <p id="stopwatch">00:00:00</p>
+        </div>
       </div>
     </div>
   </body>
+  
   <script>
     //-------------------------- Override Console Log Function
     const consoleTextarea = document.getElementById('console');
@@ -193,6 +202,69 @@
       .catch(error => {
         console.error('Error processing input on the server:', error);
       });
+  }
+    //-------------------------- Stopwatch Script
+  let stopwatchInterval;
+  let milliseconds = 0;
+  let seconds = 0;
+  let minutes = 0;
+  let hours = 0;
+  let days = 0;
+  let months = 0;
+  let years = 0;
+
+  function startStopwatch() {
+    stopwatchInterval = setInterval(updateStopwatch, 1); // Run every millisecond
+  }
+
+  function stopStopwatch() {
+    clearInterval(stopwatchInterval);
+  }
+
+  function updateStopwatch() {
+    milliseconds++;
+
+    if (milliseconds === 1000) {
+      milliseconds = 0;
+      seconds++;
+
+      if (seconds === 60) {
+        seconds = 0;
+        minutes++;
+
+        if (minutes === 60) {
+          minutes = 0;
+          hours++;
+
+          if (hours === 24) {
+            hours = 0;
+            days++;
+
+            // Assuming 30 days in a month for simplicity
+            if (days === 30) {
+              days = 0;
+              months++;
+
+              if (months === 12) {
+                months = 0;
+                years++;
+              }
+            }
+          }
+        }
+      }
+    }
+
+    const formattedTime = `${padNumber(years, 4)}:${padNumber(months, 2)}:${padNumber(days, 2)}:${padNumber(hours, 2)}:${padNumber(minutes, 2)}:${padNumber(seconds, 2)}.${padNumber(milliseconds, 3)}`;
+    document.getElementById('stopwatch').innerText = formattedTime;
+  }
+
+  function padNumber(num, size) {
+    let str = num.toString();
+    while (str.length < size) {
+      str = '0' + str;
+    }
+    return str;
   }
 //-------------------------------------------------------------- Module Exports
     module.exports = { consoleTextarea }    
