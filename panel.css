@@ -1,91 +1,121 @@
-.switch { 
-  position: relative; 
-  display: inline-block; 
-  width: 60px; 
-  height: 34px; 
+/* Reset some default styles */
+body, h1, p {
+  margin: 0;
+  padding: 0;
 }
 
-.switch input { 
-  opacity: 0; 
-  width: 0; 
-  height: 0; 
+/* Body styles */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f9f9f9;
+  color: #333;
+}
+
+/* Dark Mode */
+[data-theme='dark'] {
+  background-color: #333;
+  color: #fff;
+}
+
+/* Heading styles */
+h1 {
+  text-align: center;
+  margin: 20px 0;
+}
+
+/* Container styles */
+.components {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Dark Mode Toggle styles */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
 }
 
 .slider {
-  position: absolute; 
+  position: absolute;
   cursor: pointer;
-  top: 0; 
+  top: 0;
   left: 0;
-  right: 0; 
-  bottom: 0; 
-  background-color: #ccc; 
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
   -webkit-transition: .4s;
-  transition: .4s; 
+  transition: .4s;
 }
 
 .slider:before {
   position: absolute;
   content: "";
   height: 26px;
-  width: 26px; 
-  left: 4px; 
-  bottom: 4px; 
-  background-color: white; 
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
   -webkit-transition: .4s;
-  transition: .4s; 
+  transition: .4s;
 }
 
-input:checked + .slider { 
-  background-color: #2196F3; 
+input:checked + .slider {
+  background-color: #2196F3;
 }
 
-input:focus + .slider { 
+input:focus + .slider {
   box-shadow: 0 0 1px #2196F3;
 }
 
-input:checked + .slider:before { 
+input:checked + .slider:before {
   -webkit-transform: translateX(26px);
-  -ms-transform: translateX(26px); 
-  transform: translateX(26px); 
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
 }
 
-.slider.round { 
+.slider.round {
   border-radius: 34px;
 }
 
-.slider.round:before { 
-  border-radius: 50%; 
+.slider.round:before {
+  border-radius: 50%;
 }
 
-.console-container {
+/* Button Container styles */
+.button-container {
+  display: flex;
+  justify-content: center;
   margin-top: 20px;
 }
 
-#console {
-  border: none;
-  background-color: #f9f9f9;
-  resize: none;
-  font-size: 14px;
-  padding: 10px;
-  color: #333;
-  cursor: defualt;
+/* List styles */
+.button-container ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
 }
 
-.button-container {
-  display: flex; 
-  justify-content: center; 
-  margin-top: 20px; 
+.button-container li {
+  display: inline-block;
+  margin-right: 10px;
 }
 
+/* Button styles */
 .rounded-btn {
   border-radius: 25px;
   border: none;
   padding: 10px 20px;
-  margin: 0 10px;
   font-size: 16px;
   cursor: pointer;
-  background-color: #2196F3;
-  color: white;
   transition: background-color 0.3s ease;
 }
 
@@ -93,41 +123,61 @@ input:checked + .slider:before {
   background-color: #0d8bf2;
 }
 
+/* Stop button styles */
 .stop-btn {
   background-color: #f44336;
 }
 
+/* Restart button styles */
 .restart-btn {
   background-color: #4CAF50;
 }
 
-/* Style for Start button */
+/* Start button styles */
 #start-btn {
   background-color: green;
   color: white;
 }
 
-/* Style for Deploy-Commands button */
+/* Deploy-Commands button styles */
 #deploy-btn {
   background-color: darkgreen;
   color: white;
 }
 
-/* Style for Delete-Commands button */
+/* Delete-Commands button styles */
 #delete-btn {
   background-color: red;
   color: white;
 }
 
-/* Style for Send button */
-#send-btn {
-  background-color: green;
-  color: white;
+/* Console Container styles */
+.console-container {
+  margin-top: 20px;
+  text-align: center;
 }
 
-/* Style for console input */
-#console-input {
+/* Console styles */
+#console {
+  border: none;
+  background-color: #f9f9f9;
+  resize: none;
+  font-size: 14px;
+  padding: 10px;
+  color: #333;
+  cursor: default;
   width: 100%;
+  max-width: 600px;
+}
+
+/* Console Form styles */
+#console-form {
+  margin-top: 10px;
+}
+
+/* Console Input styles */
+#console-input {
+  width: calc(100% - 80px);
   padding: 10px;
   box-sizing: border-box;
   border: none;
@@ -136,3 +186,27 @@ input:checked + .slider:before {
   color: #333;
   font-size: 14px;
 }
+
+/* Console Submit Button styles */
+#console-submit-btn {
+  border: none;
+  padding: 10px;
+  font-size: 14px;
+  cursor: pointer;
+  background-color: #2196F3;
+  color: white;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+#console-submit-btn:hover {
+  background-color: #0d8bf2;
+}
+
+/* Stopwatch styles */
+#stopwatch {
+  margin-top: 20px;
+  font-size: 18px;
+}
+
+/* ... Add any additional styles as needed ... */
