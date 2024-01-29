@@ -68,12 +68,16 @@
     const toggleSwitch = document.querySelector('#dark-mode-toggle');
 
     function switchTheme(event) {
+      console.log('Switching theme...'); // Add this line for debugging
+      
       if (event.target.checked) {
         document.documentElement.setAttribute('data-theme', 'dark');
         localStorage.setItem('theme', 'dark');
+        console.log('Dark Mode Active');
       } else {
         document.documentElement.setAttribute('data-theme', 'light');
         localStorage.setItem('theme', 'light');
+        console.log('Light Mode Active')
       }
     }
 
@@ -88,7 +92,6 @@
         toggleSwitch.checked = true;
       }
     }
-
     //-------------------------- Button Actions
     const startBtn = document.getElementById('start-btn');
     const stopBtn = document.getElementById('stop-btn');
