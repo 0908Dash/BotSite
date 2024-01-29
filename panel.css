@@ -9,6 +9,7 @@ body {
   font-family: Arial, sans-serif;
   background-color: #f9f9f9;
   color: #333;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 /* Dark Mode */
@@ -26,8 +27,12 @@ h1 {
 /* Container styles */
 .components {
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin: 0 auto;
+  max-width: 800px;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 /* Dark Mode Toggle styles */
@@ -93,7 +98,8 @@ input:checked + .slider:before {
 /* Button Container styles */
 .button-container {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: flex-end;
   margin-top: 20px;
 }
 
@@ -105,8 +111,7 @@ input:checked + .slider:before {
 }
 
 .button-container li {
-  display: inline-block;
-  margin-right: 10px;
+  margin-bottom: 10px;
 }
 
 /* Button styles */
@@ -153,8 +158,8 @@ input:checked + .slider:before {
 
 /* Console Container styles */
 .console-container {
-  margin-top: 20px;
   text-align: center;
+  max-width: 600px;
 }
 
 /* Console styles */
@@ -167,7 +172,6 @@ input:checked + .slider:before {
   color: #333;
   cursor: default;
   width: 100%;
-  max-width: 600px;
 }
 
 /* Console Form styles */
@@ -209,4 +213,20 @@ input:checked + .slider:before {
   font-size: 18px;
 }
 
-/* ... Add any additional styles as needed ... */
+.components {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.console-stopwatch-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.stopwatch-container,
+.button-container {
+  margin-top: 20px;
+}
