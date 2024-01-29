@@ -24,17 +24,6 @@ h1 {
   margin: 20px 0;
 }
 
-/* Container styles */
-.components {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: flex-start;
-  margin: 0 auto;
-  max-width: 800px;
-  transition: background-color 0.3s ease, color 0.3s ease;
-}
-
 /* Dark Mode Toggle styles */
 .switch {
   position: relative;
@@ -211,22 +200,4 @@ input:checked + .slider:before {
 #stopwatch {
   margin-top: 20px;
   font-size: 18px;
-}
-
-.components {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: flex-start;
-}
-
-.console-stopwatch-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.stopwatch-container,
-.button-container {
-  margin-top: 20px;
 }
