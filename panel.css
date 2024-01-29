@@ -58,6 +58,7 @@ h1 {
   background-color: #ccc;
   -webkit-transition: .4s;
   transition: .4s;
+  border-radius: 34px; /* Added this line */
 }
 
 .slider:before {
@@ -70,6 +71,7 @@ h1 {
   background-color: white;
   -webkit-transition: .4s;
   transition: .4s;
+  border-radius: 50%; /* Added this line */
 }
 
 input:checked + .slider {
