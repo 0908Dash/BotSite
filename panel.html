@@ -50,235 +50,238 @@
   
   <script>
     //-------------------------- Override Console Log Function
-    const consoleTextarea = document.getElementById('console');
+const consoleTextarea = document.getElementById('console');
 
-    console.log = function (message) {
-      window.originalConsoleLog(message);
-      consoleTextarea.value += `${message}\n`;
-    };
+console.log = function (message) {
+  window.originalConsoleLog(message);
+  consoleTextarea.value += `${message}\n`;
+};
 
-    window.originalConsoleLog = console.log;
+window.originalConsoleLog = console.log;
 
-    //-------------------------- Dark Mode Toggle
-    const toggleSwitch = document.querySelector('#dark-mode-toggle');
+//-------------------------- Dark Mode Toggle
+const toggleSwitch = document.querySelector('#dark-mode-toggle');
 
-    function switchTheme(event) {
-      console.log('Switching theme...'); // Add this line for debugging
-      
-      if (event.target.checked) {
-        document.documentElement.setAttribute('data-theme', 'dark');
-        localStorage.setItem('theme', 'dark');
-        console.log('Dark Mode Active');
-      } else {
-        document.documentElement.setAttribute('data-theme', 'light');
-        localStorage.setItem('theme', 'light');
-        console.log('Light Mode Active')
-      }
-    }
+function switchTheme(event) {
+  console.log('Switching theme...'); // Add this line for debugging
+  
+  if (event.target.checked) {
+    document.documentElement.setAttribute('data-theme', 'dark');
+    localStorage.setItem('theme', 'dark');
+    console.log('Dark Mode Active');
+  } else {
+    document.documentElement.setAttribute('data-theme', 'light');
+    localStorage.setItem('theme', 'light');
+    console.log('Light Mode Active')
+  }
+}
 
-    toggleSwitch.addEventListener('change', switchTheme, false);
+toggleSwitch.addEventListener('change', switchTheme, false);
 
-    const currentTheme = localStorage.getItem('theme') || 'light';
+const currentTheme = localStorage.getItem('theme') || 'light';
 
-    if (currentTheme) {
-      document.documentElement.setAttribute('data-theme', currentTheme);
+if (currentTheme) {
+  document.documentElement.setAttribute('data-theme', currentTheme);
 
-      if (currentTheme === 'dark') {
-        toggleSwitch.checked = true;
-      }
-    }
-    //-------------------------- Button Actions
-    const startBtn = document.getElementById('start-btn');
-    const stopBtn = document.getElementById('stop-btn');
-    const deployBtn = document.getElementById('deploy-btn');
-    const restartBtn = document.getElementById('restart-btn'); 
-    const deleteBtn = document.getElementById('delete-btn');
+  if (currentTheme === 'dark') {
+    toggleSwitch.checked = true;
+  }
+}
 
-    // Set initial display property for stop and restart buttons
-    stopBtn.style.display = 'none';
-    restartBtn.style.display = 'none';
+//-------------------------- Button Actions
+const startBtn = document.getElementById('start-btn');
+const stopBtn = document.getElementById('stop-btn');
+const deployBtn = document.getElementById('deploy-btn');
+const restartBtn = document.getElementById('restart-btn'); 
+const deleteBtn = document.getElementById('delete-btn');
 
-    startBtn.addEventListener('click', () => {
-      makeRequest('https://4x7xb1xb-1119.use2.devtunnels.ms/start-bot');
+// Set initial display property for stop and restart buttons
+stopBtn.style.display = 'none';
+restartBtn.style.display = 'none';
 
-      // Show the stop and restart buttons after starting the bot
-      stopBtn.style.display = 'inline-block';
-      restartBtn.style.display = 'inline-block';
+startBtn.addEventListener('click', () => {
+  makeRequest('https://4x7xb1xb-1119.use2.devtunnels.ms/start-bot');
 
-      // Hide start, deploy, and delete buttons
-      startBtn.style.display = 'none';
-      deployBtn.style.display = 'none';
-      deleteBtn.style.display = 'none';
-    });
+  // Show the stop and restart buttons after starting the bot
+  stopBtn.style.display = 'inline-block';
+  restartBtn.style.display = 'inline-block';
 
-    stopBtn.addEventListener('click', () => {
-      makeRequest('https://4x7xb1xb-1119.use2.devtunnels.ms/stop-bot');
+  // Hide start, deploy, and delete buttons
+  startBtn.style.display = 'none';
+  deployBtn.style.display = 'none';
+  deleteBtn.style.display = 'none';
+});
 
-      // Show the start, deploy, and delete buttons after stopping the bot
-      startBtn.style.display = 'inline-block';
-      deployBtn.style.display = 'inline-block';
-      deleteBtn.style.display = 'inline-block';
+stopBtn.addEventListener('click', () => {
+  makeRequest('https://4x7xb1xb-1119.use2.devtunnels.ms/stop-bot');
 
-      // Hide stop and restart buttons
-      stopBtn.style.display = 'none';
-      restartBtn.style.display = 'none';
-    });
+  // Show the start, deploy, and delete buttons after stopping the bot
+  startBtn.style.display = 'inline-block';
+  deployBtn.style.display = 'inline-block';
+  deleteBtn.style.display = 'inline-block';
 
-    deployBtn.addEventListener('click', () => {
-      makeRequest('https://4x7xb1xb-1119.use2.devtunnels.ms/deploy-commands');
-    });
+  // Hide stop and restart buttons
+  stopBtn.style.display = 'none';
+  restartBtn.style.display = 'none';
+});
 
-    restartBtn.addEventListener('click', () => {
-      makeRequest('https://4x7xb1xb-1119.use2.devtunnels.ms/restart-bot');
-    });
+deployBtn.addEventListener('click', () => {
+  makeRequest('https://4x7xb1xb-1119.use2.devtunnels.ms/deploy-commands');
+});
 
-    deleteBtn.addEventListener('click', () => {
-      makeRequest('https://4x7xb1xb-1119.use2.devtunnels.ms/delete-commands');
-    });
+restartBtn.addEventListener('click', () => {
+  makeRequest('https://4x7xb1xb-1119.use2.devtunnels.ms/restart-bot');
+});
 
-    function makeRequest(endpoint) {
-      fetch(endpoint)
-        .then(response => response.json())
-        .then(data => {
-          console.log(`Action completed: ${data.status}`);
-        })
-        .catch(error => {
-          console.error(`Error executing action: ${error}`);
-        });
-    }
+deleteBtn.addEventListener('click', () => {
+  makeRequest('https://4x7xb1xb-1119.use2.devtunnels.ms/delete-commands');
+});
 
-    //-------------------------- Health Check
-    function performHealthCheck() {
-      fetch('https://4x7xb1xb-1119.use2.devtunnels.ms/')
-        .then(response => {
-          if (response.ok) {
-            console.log('Server is reachable');
-          } else {
-            console.error('Server is not reachable');
-            displayMessage('Connection lost. Please check your internet connection.');
-          }
-        })
-        .catch(error => {
-          console.error('Error during health check:', error);
-          displayMessage('Connection lost. Please check your internet connection.');
-        });
-    }
-
-    function displayMessage(message) {
-      console.log(message);
-    }
-
-    setInterval(performHealthCheck, 30000);
-    setTimeout(performHealthCheck, 2000);
-
-    setInterval(function () {
-      displayMessage('Displaying a message every 30 minutes.');
-    }, 1800000);
-//-----------------------------------------Input Processing function
-    const consoleInput = document.getElementById('console-input');
-  const consoleSubmitBtn = document.getElementById('console-submit-btn');
-
-  consoleSubmitBtn.addEventListener('click', function (event) {
-    event.preventDefault(); // Prevent the default form submission behavior
-
-    // Get the input value
-    const userInput = consoleInput.value.trim();
-
-    if (userInput !== '') {
-      // Display the user input in the console
-      console.log(`User Input: ${userInput}`);
-
-      // Send the input to the server for processing
-      processInputOnServer(userInput);
-
-      // Clear the input field
-      consoleInput.value = '';
-    }
-  });
-
-  function processInputOnServer(input) {
-    // Send an HTTP request to the server with the user input
-    fetch('https://4x7xb1xb-1119.use2.devtunnels.ms/process-input', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        input: input,
-      }),
+function makeRequest(endpoint) {
+  fetch(endpoint)
+    .then(response => response.json())
+    .then(data => {
+      console.log(`Action completed: ${data.status}`);
     })
-      .then(response => response.json())
-      .then(data => {
-        console.log(`Server Response: ${data.message}`);
-      })
-      .catch(error => {
-        console.error('Error processing input on the server:', error);
-      });
+    .catch(error => {
+      console.error(`Error executing action: ${error}`);
+    });
+}
+
+//-------------------------- Health Check
+function performHealthCheck() {
+  fetch('https://4x7xb1xb-1119.use2.devtunnels.ms/')
+    .then(response => {
+      if (response.ok) {
+        console.log('Server is reachable');
+      } else {
+        console.error('Server is not reachable');
+        displayMessage('Connection lost. Please check your internet connection.');
+      }
+    })
+    .catch(error => {
+      console.error('Error during health check:', error);
+      displayMessage('Connection lost. Please check your internet connection.');
+    });
+}
+
+function displayMessage(message) {
+  console.log(message);
+}
+
+setInterval(performHealthCheck, 30000);
+setTimeout(performHealthCheck, 2000);
+
+setInterval(function () {
+  displayMessage('Displaying a message every 30 minutes.');
+}, 1800000);
+
+//-----------------------------------------Input Processing function
+const consoleInput = document.getElementById('console-input');
+const consoleSubmitBtn = document.getElementById('console-submit-btn');
+
+consoleSubmitBtn.addEventListener('click', function (event) {
+  event.preventDefault(); // Prevent the default form submission behavior
+
+  // Get the input value
+  const userInput = consoleInput.value.trim();
+
+  if (userInput !== '') {
+    // Display the user input in the console
+    console.log(`User Input: ${userInput}`);
+
+    // Send the input to the server for processing
+    processInputOnServer(userInput);
+
+    // Clear the input field
+    consoleInput.value = '';
   }
-    //-------------------------- Stopwatch Script
-  let stopwatchInterval;
-  let milliseconds = 0;
-  let seconds = 0;
-  let minutes = 0;
-  let hours = 0;
-  let days = 0;
-  let months = 0;
-  let years = 0;
+});
 
-  function startStopwatch() {
-    stopwatchInterval = setInterval(updateStopwatch, 1); // Run every millisecond
-  }
+function processInputOnServer(input) {
+  // Send an HTTP request to the server with the user input
+  fetch('https://4x7xb1xb-1119.use2.devtunnels.ms/process-input', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      input: input,
+    }),
+  })
+    .then(response => response.json())
+    .then(data => {
+      console.log(`Server Response: ${data.message}`);
+    })
+    .catch(error => {
+      console.error('Error processing input on the server:', error);
+    });
+}
 
-  function stopStopwatch() {
-    clearInterval(stopwatchInterval);
-  }
+//-------------------------- Stopwatch Script
+let stopwatchInterval;
+let milliseconds = 0;
+let seconds = 0;
+let minutes = 0;
+let hours = 0;
+let days = 0;
+let months = 0;
+let years = 0;
 
-  function updateStopwatch() {
-    milliseconds++;
+function startStopwatch() {
+  stopwatchInterval = setInterval(updateStopwatch, 1); // Run every millisecond
+}
 
-    if (milliseconds === 1000) {
-      milliseconds = 0;
-      seconds++;
+function stopStopwatch() {
+  clearInterval(stopwatchInterval);
+}
 
-      if (seconds === 60) {
-        seconds = 0;
-        minutes++;
+function updateStopwatch() {
+  milliseconds++;
 
-        if (minutes === 60) {
-          minutes = 0;
-          hours++;
+  if (milliseconds === 1000) {
+    milliseconds = 0;
+    seconds++;
 
-          if (hours === 24) {
-            hours = 0;
-            days++;
+    if (seconds === 60) {
+      seconds = 0;
+      minutes++;
 
-            // Assuming 30 days in a month for simplicity
-            if (days === 30) {
-              days = 0;
-              months++;
+      if (minutes === 60) {
+        minutes = 0;
+        hours++;
 
-              if (months === 12) {
-                months = 0;
-                years++;
-              }
+        if (hours === 24) {
+          hours = 0;
+          days++;
+
+          // Assuming 30 days in a month for simplicity
+          if (days === 30) {
+            days = 0;
+            months++;
+
+            if (months === 12) {
+              months = 0;
+              years++;
             }
           }
         }
       }
     }
-
-    const formattedTime = `${padNumber(years, 4)}:${padNumber(months, 2)}:${padNumber(days, 2)}:${padNumber(hours, 2)}:${padNumber(minutes, 2)}:${padNumber(seconds, 2)}.${padNumber(milliseconds, 3)}`;
-    document.getElementById('stopwatch').innerText = formattedTime;
   }
 
-  function padNumber(num, size) {
-    let str = num.toString();
-    while (str.length < size) {
-      str = '0' + str;
-    }
-    return str;
+  const formattedTime = `${padNumber(years, 4)}:${padNumber(months, 2)}:${padNumber(days, 2)}:${padNumber(hours, 2)}:${padNumber(minutes, 2)}:${padNumber(seconds, 2)}.${padNumber(milliseconds, 3)}`;
+  document.getElementById('stopwatch').innerText = formattedTime;
+}
+
+function padNumber(num, size) {
+  let str = num.toString();
+  while (str.length < size) {
+    str = '0' + str;
   }
+  return str;
+}
 //-------------------------------------------------------------- Module Exports
-    module.exports = { consoleTextarea }    
-  </script>
+module.exports = { consoleTextarea };
+</script>
 </html>
