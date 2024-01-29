@@ -46,6 +46,9 @@ h1 {
   flex-direction: column;
   align-items: flex-end;
   margin-top: 20px;
+  position: absolute;
+  right: 20px; /* Adjusted position */
+  top: 0; /* Adjusted position */
 }
 
 /* List styles */
@@ -67,6 +70,7 @@ h1 {
   font-size: 16px;
   cursor: pointer;
   transition: background-color 0.3s ease;
+  height: 20px; /* Set the height */
 }
 
 .rounded-btn:hover {
@@ -106,6 +110,7 @@ h1 {
   text-align: center;
   max-width: 600px;
   margin-top: 20px; /* Adjusted margin */
+  margin-left: 150px; /* Added margin */
 }
 
 /* Console styles */
