@@ -10,45 +10,40 @@
   <body>
     <!-- Heading -->
     <h1>CSBot's Panel</h1>
-    <!-- Main Container -->
-    <div class="components">
-      <!-- Dark Mode Toggle -->
-      <label class="switch">
-        <input type="checkbox" id="dark-mode-toggle">
-        <span class="slider round"></span>
-      </label>
 
-      <!-- Console and Stopwatch Container -->
-      <div class="console-stopwatch-container">
-        <!-- Console Container -->
-        <div class="console-container">
-          <!-- Console Textarea -->
-          <textarea id="console" rows="10" cols="50" readonly></textarea>
-          <!-- Console Form -->
-          <form id="console-form">
-            <!-- Console Input -->
-            <input type="text" id="console-input" placeholder="Input Here" autocomplete="on">
-            <!-- Console Submit Button -->
-            <button type="submit" id="console-submit-btn" class="rounded-btn">SEND</button>
-          </form>
-        </div>
+    <!-- Dark Mode Toggle -->
+    <label class="switch">
+      <input type="checkbox" id="dark-mode-toggle">
+      <span class="slider round"></span>
+    </label>
 
-        <!-- Stopwatch Container -->
-        <div class="stopwatch-container">
-          <p id="stopwatch">00:00:00</p>
-        </div>
-      </div>
+    <!-- Console Container -->
+    <div class="console-container">
+      <!-- Console Textarea -->
+      <textarea id="console" rows="10" cols="50" readonly></textarea>
+      <!-- Console Form -->
+      <form id="console-form">
+        <!-- Console Input -->
+        <input type="text" id="console-input" placeholder="Input Here" autocomplete="on">
+        <!-- Console Submit Button -->
+        <button type="button" id="console-submit-btn" class="rounded-btn">SEND</button>
+      </form>
+    </div>
 
-      <!-- Button Container -->
-      <div class="button-container">
-        <!-- Buttons -->
-        <ul>
-          <li><button id="start-btn" class="rounded-btn">START</button></li>
-          <li><button id="stop-btn" class="rounded-btn">STOP</button></li>
-          <li><button id="deploy-btn" class="rounded-btn">DEPLOY-COMMANDS</button></li>
-          <li><button id="restart-btn" class="ronded-btn">RESTART</button></li>
-          <li><button id="delete-btn" class="rounded-btn">DELETE-COMMANDS</button></li>
-        </ul>
+    <!-- Button Container -->
+    <div class="button-container">
+      <!-- Buttons -->
+      <ul>
+        <li><button id="start-btn" class="rounded-btn">START</button></li>
+        <li><button id="stop-btn" class="rounded-btn stop-btn">STOP</button></li>
+        <li><button id="deploy-btn" class="rounded-btn deploy-btn">DEPLOY-COMMANDS</button></li>
+        <li><button id="restart-btn" class="rounded-btn restart-btn">RESTART</button></li>
+        <li><button id="delete-btn" class="rounded-btn delete-btn">DELETE-COMMANDS</button></li>
+      </ul>
+
+      <!-- Stopwatch Container -->
+      <div class="stopwatch-container">
+        <p id="stopwatch">00:00:00</p>
       </div>
     </div>
   </body>
