@@ -106,10 +106,24 @@
       // Show the stop and restart buttons after starting the bot
       stopBtn.style.display = 'inline-block';
       restartBtn.style.display = 'inline-block';
+
+      // Hide start, deploy, and delete buttons
+      startBtn.style.display = 'none';
+      deployBtn.style.display = 'none';
+      deleteBtn.style.display = 'none';
     });
 
     stopBtn.addEventListener('click', () => {
       makeRequest('https://4x7xb1xb-1119.use2.devtunnels.ms/stop-bot');
+
+      // Show the start, deploy, and delete buttons after stopping the bot
+      startBtn.style.display = 'inline-block';
+      deployBtn.style.display = 'inline-block';
+      deleteBtn.style.display = 'inline-block';
+
+      // Hide stop and restart buttons
+      stopBtn.style.display = 'none';
+      restartBtn.style.display = 'none';
     });
 
     deployBtn.addEventListener('click', () => {
