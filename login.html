@@ -22,7 +22,7 @@
     
   document.addEventListener('DOMContentLoaded', function () {
   // Whitelist of allowed IP addresses
-  const whitelist = ['173.17.76.238', '172.59.104.33', '205.189.2.152', '37.19.199.141'];
+  const whitelist = require('./config.jsonc');
 
   // Function to check if an IP address is in the whitelist
   function isAllowedIP(ip) {
@@ -34,11 +34,11 @@
     if (isAllowedIP(ip)) {
       setTimeout(function () {
         window.location.href = './panel.html'; // redirect to panel.html
-      }, 1000); // 1000 milliseconds (1 second) delay
+      }, 3000); // 3000 milliseconds (3 second) delay
     } else {
       setTimeout(function () {
         window.location.href = './accessDenied.html'; // redirect to accessDenied.html
-      }, 1000); // 1000 milliseconds (1 second) delay
+      }, 3000); // 3000 milliseconds (3 second) delay
     }
   }
 
