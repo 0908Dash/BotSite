@@ -1,20 +1,21 @@
 <html lang="en">
   <head>
-   <meta charset="UTF-8">
-   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <title>CSBot Panel</title>
-   <style>
-     body {
-       color: #B90000;
-       backgound-color: #000000;
-     }
-   </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSBot Panel</title>
+    <style>
+      body {
+        color: #B90000;
+        background-color: #000000; /* Fix typo here */
+      }
+    </style>
   </head>
   <body>
     <h1>ACCESS DENIED</h1>
+    <script src="./panel.js"></script> <!-- Include your JavaScript file -->
   </body>
   <script>
-  const consoleTextarea = require('./panel.html');
+    const consoleTextarea = document.getElementById('console'); // Access the console element directly
 
     console.log = function (message) {
       window.originalConsoleLog(message);
@@ -23,40 +24,40 @@
 
     window.originalConsoleLog = console.log;
     
-  document.addEventListener('DOMContentLoaded', function () {
-  // Whitelist of allowed IP addresses
-  const whitelist = require('./config.jsonc') || ['173.17.76.238', '172.59.104.33', '205.189.2.152', '37.19.199.141'];
+    document.addEventListener('DOMContentLoaded', function () {
+      // Whitelist of allowed IP addresses
+      const whitelist = ['173.17.76.238', '172.59.104.33', '205.189.2.152', '37.19.199.141'];
 
-  // Function to check if an IP address is in the whitelist
-  function isAllowedIP(ip) {
-    return whitelist.includes(ip);
-  }
+      // Function to check if an IP address is in the whitelist
+      function isAllowedIP(ip) {
+        return whitelist.includes(ip);
+      }
 
-  // Function to redirect to the appropriate page based on the IP address
-  function redirectPage(ip) {
-    if (isAllowedIP(ip)) {
+      // Function to redirect to the appropriate page based on the IP address
+      function redirectPage(ip) {
+        if (isAllowedIP(ip)) {
+          setTimeout(function () {
+            window.location.href = './panel.html'; // redirect to panel.html
+          }, 1000); // 1000 milliseconds (1 second) delay
+        } else {
+          setTimeout(function () {
+            window.location.href = './accessDenied.html'; // redirect to accessDenied.html
+          }, 1000); // 1000 milliseconds (1 second) delay
+        }
+      }
+
+      // Get the user's IP address using the ipify.org API with a delay
       setTimeout(function () {
-        window.location.href = './panel.html'; // redirect to panel.html
-      }, 1000); // 1000 milliseconds (1 second) delay
-    } else {
-      setTimeout(function () {
-        window.location.href = './accessDenied.html'; // redirect to accessDenied.html
-      }, 1000); // 1000 milliseconds (1 second) delay
-    }
-  }
-
-  // Get the user's IP address using the ipify.org API with a delay
-  setTimeout(function () {
-    fetch('https://api.ipify.org?format=json')
-      .then(response => response.json())
-      .then(data => {
-        const ipAddress = data.ip;
-        redirectPage(ipAddress);
-      })
-      .catch(error => {
-        console.log('Error:', error);
-      });
-  }, 2000); // 2000 milliseconds (2 seconds) delay before making the IP address request
-});
- </script>
+        fetch('https://api.ipify.org?format=json')
+          .then(response => response.json())
+          .then(data => {
+            const ipAddress = data.ip;
+            redirectPage(ipAddress);
+          })
+          .catch(error => {
+            console.log('Error:', error);
+          });
+      }, 2000); // 2000 milliseconds (2 seconds) delay before making the IP address request
+    });
+  </script>
 </html>
