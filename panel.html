@@ -95,67 +95,6 @@ if (currentTheme) {
     toggleSwitch.checked = true;
   }
 }
-
-//-------------------------- Button Actions
-const startBtn = document.getElementById('start-btn');
-const stopBtn = document.getElementById('stop-btn');
-const deployBtn = document.getElementById('deploy-btn');
-const restartBtn = document.getElementById('restart-btn'); 
-const deleteBtn = document.getElementById('delete-btn');
-
-// Set initial display property for stop and restart buttons
-stopBtn.style.display = 'none';
-restartBtn.style.display = 'none';
-
-startBtn.addEventListener('click', () => {
-  makeRequest('https://4x7xb1xb-1119.use2.devtunnels.ms/start-bot');
-
-  // Show the stop and restart buttons after starting the bot
-  stopBtn.style.display = 'inline-block';
-  restartBtn.style.display = 'inline-block';
-
-  // Hide start, deploy, and delete buttons
-  startBtn.style.display = 'none';
-  deployBtn.style.display = 'none';
-  deleteBtn.style.display = 'none';
-});
-
-stopBtn.addEventListener('click', () => {
-  makeRequest('https://4x7xb1xb-1119.use2.devtunnels.ms/stop-bot');
-
-  // Show the start, deploy, and delete buttons after stopping the bot
-  startBtn.style.display = 'inline-block';
-  deployBtn.style.display = 'inline-block';
-  deleteBtn.style.display = 'inline-block';
-
-  // Hide stop and restart buttons
-  stopBtn.style.display = 'none';
-  restartBtn.style.display = 'none';
-});
-
-deployBtn.addEventListener('click', () => {
-  makeRequest('https://4x7xb1xb-1119.use2.devtunnels.ms/deploy-commands');
-});
-
-restartBtn.addEventListener('click', () => {
-  makeRequest('https://4x7xb1xb-1119.use2.devtunnels.ms/restart-bot');
-});
-
-deleteBtn.addEventListener('click', () => {
-  makeRequest('https://4x7xb1xb-1119.use2.devtunnels.ms/delete-commands');
-});
-
-function makeRequest(endpoint) {
-  fetch(endpoint)
-    .then(response => response.json())
-    .then(data => {
-      console.log(`Action completed: ${data.status}`);
-    })
-    .catch(error => {
-      console.error(`Error executing action: ${error}`);
-    });
-}
-
 //-------------------------- Health Check
 function performHealthCheck() {
   fetch('https://4x7xb1xb-1119.use2.devtunnels.ms/')
@@ -288,6 +227,70 @@ function padNumber(num, size) {
     str = '0' + str;
   }
   return str;
+}
+
+    //-------------------------- Button Actions
+const startBtn = document.getElementById('start-btn');
+const stopBtn = document.getElementById('stop-btn');
+const deployBtn = document.getElementById('deploy-btn');
+const restartBtn = document.getElementById('restart-btn'); 
+const deleteBtn = document.getElementById('delete-btn');
+
+// Set initial display property for stop and restart buttons
+stopBtn.style.display = 'none';
+restartBtn.style.display = 'none';
+
+startBtn.addEventListener('click', () => {
+  makeRequest('https://4x7xb1xb-1119.use2.devtunnels.ms/start-bot');
+
+  // Show the stop and restart buttons after starting the bot
+  stopBtn.style.display = 'inline-block';
+  restartBtn.style.display = 'inline-block';
+
+  // Hide start, deploy, and delete buttons
+  startBtn.style.display = 'none';
+  deployBtn.style.display = 'none';
+  deleteBtn.style.display = 'none';
+
+  startStopwatch();
+});
+
+stopBtn.addEventListener('click', () => {
+  makeRequest('https://4x7xb1xb-1119.use2.devtunnels.ms/stop-bot');
+
+  // Show the start, deploy, and delete buttons after stopping the bot
+  startBtn.style.display = 'inline-block';
+  deployBtn.style.display = 'inline-block';
+  deleteBtn.style.display = 'inline-block';
+
+  // Hide stop and restart buttons
+  stopBtn.style.display = 'none';
+  restartBtn.style.display = 'none';
+
+  stopStopwatch();
+});
+
+deployBtn.addEventListener('click', () => {
+  makeRequest('https://4x7xb1xb-1119.use2.devtunnels.ms/deploy-commands');
+});
+
+restartBtn.addEventListener('click', () => {
+  makeRequest('https://4x7xb1xb-1119.use2.devtunnels.ms/restart-bot');
+});
+
+deleteBtn.addEventListener('click', () => {
+  makeRequest('https://4x7xb1xb-1119.use2.devtunnels.ms/delete-commands');
+});
+
+function makeRequest(endpoint) {
+  fetch(endpoint)
+    .then(response => response.json())
+    .then(data => {
+      console.log(`Action completed: ${data.status}`);
+    })
+    .catch(error => {
+      console.error(`Error executing action: ${error}`);
+    });
 }
 //-------------------------------------------------------------- Module Exports
 module.exports = { consoleTextarea };
