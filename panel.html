@@ -276,6 +276,10 @@ deployBtn.addEventListener('click', () => {
 
 restartBtn.addEventListener('click', () => {
   makeRequest('https://4x7xb1xb-1119.use2.devtunnels.ms/restart-bot');
+
+  stopStopwatch();
+
+  setTimeout(startStopwatch(), 1); //set 1 millisecond delay
 });
 
 deleteBtn.addEventListener('click', () => {
