@@ -8,6 +8,9 @@
     <link rel="stylesheet" href="panel.css">
   </head>
   <body>
+    <!-- Full Screen -->
+    <button id="fullScreen"><image src="https://www.svgrepo.com/show/103811/full-screen.svg" alt="Full Screen"></image></button>
+    
     <!-- Heading -->
     <h1>CSBot's Panel</h1>
 
@@ -247,6 +250,7 @@ function processInputOnServer(input) {
   const deployBtn = document.getElementById('deploy-btn');
   const restartBtn = document.getElementById('restart-btn'); 
   const deleteBtn = document.getElementById('delete-btn');
+  const fullScreen = document.getElementById('fullScreen');
 
   // Set initial display property for stop and restart buttons
   stopBtn.style.display = 'none';
@@ -301,6 +305,22 @@ function processInputOnServer(input) {
     makeRequest('https://4x7xb1xb-1119.use2.devtunnels.ms/delete-commands');
   });
 
+  fullScreen.addEventListener('click', () => {
+    /* Get the element you want displayed in fullscreen mode (the body in this case): */
+var elem = document.body;
+
+/* When the openFullscreen() function is executed, open the webpage in fullscreen. */
+function openFullscreen() {
+  if (elem.requestFullscreen) {
+    elem.requestFullscreen();
+  } else if (elem.webkitRequestFullscreen) { /* Safari */
+    elem.webkitRequestFullscreen();
+  } else if (elem.msRequestFullscreen) { /* IE11 */
+    elem.msRequestFullscreen();
+  }
+}
+  });
+    
   function makeRequest(endpoint) {
     fetch(endpoint)
       .then(response => response.json())
@@ -310,7 +330,7 @@ function processInputOnServer(input) {
       .catch(error => {
         console.error(`Error executing action: ${error}`);
       });
-  }
+  };
   //-------------------------------------------------------------- Module Exports
   module.exports = { consoleTextarea };
 </script>
