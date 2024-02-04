@@ -37,10 +37,10 @@
     <div class="button-container">
       <!-- Buttons -->
       <ul>
-        <li><button id="start-btn" class="rounded-btn">START</button></li>
+        <li><button id="start-btn" class="rounded-btn">START ALL</button></li>
       </ul>
       <ul>
-        <li><button id="stop-btn" class="rounded-btn stop-btn">STOP</button></li>
+        <li><button id="stop-btn" class="rounded-btn stop-btn">STOP ALL</button></li>
       </ul>
       <ul>
         <li><button id="deploy-btn" class="rounded-btn deploy-btn">DEPLOY-COMMANDS</button></li>
@@ -270,7 +270,7 @@ function processInputOnServer(input) {
   restartBtn.style.display = 'none';
 
   startBtn.addEventListener('click', () => {
-    makeRequest('https://4x7xb1xb-1119.use2.devtunnels.ms/start-bot');
+    makeRequest('https://4x7xb1xb-1119.use2.devtunnels.ms/start-all');
 
     // Show the stop and restart buttons after starting the bot
     stopBtn.style.display = 'inline-block';
@@ -285,7 +285,7 @@ function processInputOnServer(input) {
   });
 
   stopBtn.addEventListener('click', () => {
-    makeRequest('https://4x7xb1xb-1119.use2.devtunnels.ms/stop-bot');
+    makeRequest('https://4x7xb1xb-1119.use2.devtunnels.ms/stop-all');
 
     // Show the start, deploy, and delete buttons after stopping the bot
     startBtn.style.display = 'inline-block';
