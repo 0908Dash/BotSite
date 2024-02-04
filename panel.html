@@ -319,11 +319,11 @@ function processInputOnServer(input) {
   });
 
   deployBtn.addEventListener('click', () => {
-    makeRequest('https://4x7xb1xb-1119.use2.devtunnels.ms/deploy-commands');
+    makeRequest('https://4x7xb1xb-1119.use2.devtunnels.ms/deploy-commands-all');
   });
 
   restartBtn.addEventListener('click', () => {
-    makeRequest('https://4x7xb1xb-1119.use2.devtunnels.ms/restart-bot');
+    makeRequest('https://4x7xb1xb-1119.use2.devtunnels.ms/restart-bot-all');
 
     stopStopwatch();
     resetStopwatch();
@@ -332,7 +332,7 @@ function processInputOnServer(input) {
   });
 
   deleteBtn.addEventListener('click', () => {
-    makeRequest('https://4x7xb1xb-1119.use2.devtunnels.ms/delete-commands');
+    makeRequest('https://4x7xb1xb-1119.use2.devtunnels.ms/delete-commands-all');
   });
 
   fullScreen.addEventListener('click', () => {
