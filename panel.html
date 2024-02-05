@@ -1,87 +1,78 @@
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <!-- Meta tags -->
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Title and Stylesheet -->
-    <title>CSBot Panel</title>
-    <link rel="stylesheet" href="panel.css">
-  </head>
-  <body>
-    <!-- Full Screen -->
-    <button id="fullScreen" onClick="fullscreen()"><image src="https://www.svgrepo.com/show/103811/full-screen.svg" alt="Full Screen"></image></button>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CSBot Panel</title>
+  <link rel="stylesheet" href="panel.css">
+</head>
+<body>
+  <button id="fullScreen" onclick="fullscreen()">
+    <img src="https://www.svgrepo.com/show/103811/full-screen.svg" alt="Full Screen">
+  </button>
+  
+  <h1>CSBot's Panel</h1>
+
+  <label class="switch">
+    <input type="checkbox" id="dark-mode-toggle">
+    <span class="slider round"></span>
+  </label>
+
+  <label class="menuButton">
+    <span class="line1"><p>---</p></span>
+    <span class="line2"><p>---</p></span>
+    <span class="line3"><p>---</p></span>
+  </label>
+
+  <div class="nav">
+    <button href="./addNew.html">Add New</button>
+    <ul class="dirs">
+      <li class="GolliCRAFT">
+        <a href="./panels/GolliCRAFT/GolliCRAFT.html">GolliCRAFT</a>
+        <ul class="dropdown">
+          <li><a href="./panels/GolliCRAFT/ALLPanel.html">All Panel</a></li>
+          <li><a href="./panels/GolliCRAFT/mainPanel.html">Main Panel</a></li>
+        </ul>
+      </li>
+      <li class="ClientServer">
+        <a href="./panels/ClientServer/ClientServer.html">Client Server</a>
+        <ul class="dropdown">
+          <li></li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+
+  <div class="console-container">
+    <textarea id="console" rows="10" cols="50" readonly></textarea>
+    <form id="console-form">
+      <input type="text" id="console-input" placeholder="Input Here" autocomplete="on">
+      <button type="button" id="console-submit-btn" class="rounded-btn">SEND</button>
+    </form>
+  </div>
+
+  <div class="button-container">
+    <ul>
+      <li><button id="start-btn" class="rounded-btn">START ALL</button></li>
+    </ul>
+    <ul>
+      <li><button id="stop-btn" class="rounded-btn stop-btn">STOP ALL</button></li>
+    </ul>
+    <ul>
+      <li><button id="deploy-btn" class="rounded-btn deploy-btn">DEPLOY-COMMANDS</button></li>
+    </ul>
+    <ul>
+      <li><button id="restart-btn" class="rounded-btn restart-btn">RESTART</button></li>
+    </ul>
+    <ul>
+      <li><button id="delete-btn" class="rounded-btn delete-btn">DELETE-COMMANDS</button></li>
+    </ul>
+
+    <div class="stopwatch-container">
+      <p id="stopwatch">00:00:00</p>
+    </div>
+  </div>
     
-    <!-- Heading -->
-    <h1>CSBot's Panel</h1>
-
-    <!-- Dark Mode Toggle -->
-    <label class="switch">
-      <input type="checkbox" id="dark-mode-toggle">
-      <span class="slider round"></span>
-    </label>
-
-    <label class="menuButton">
-      <span class="line1"><p>---</p></span>
-      <span class="line2"><p>---</p></span>
-      <span class="line3"><p>---</p></span>
-    </label>
-
-    <div class="nav">
-      <button href="./addNew.html">Add New</button>
-      <ul class="dirs">
-        <li class="GolliCRAFT">
-          <a href="./panels/GolliCRAFT/GolliCRAFT.html">GolliCRAFT</a>
-          <ul class="dropdown">
-            <li><a href="./panels/GolliCRAFT/ALLPanel.html">All Panel</a></li>
-            <li><a href="./panels/GolliCRAFT/mainPanel.html"></a></li>
-          </ul>
-        </li>
-        <li class="ClientServer">
-          <a href="./panels/ClientServer/ClientServer.html">Client Server</a>
-          <ul class="dropdown">
-            <li></li>
-          </ul>
-        </li>
-      </ul>
-    </div>
-
-    <!-- Console Container -->
-    <div class="console-container">
-      <!-- Console Textarea -->
-      <textarea id="console" rows="10" cols="50" readonly></textarea>
-      <!-- Console Form -->
-      <form id="console-form">
-        <!-- Console Input -->
-        <input type="text" id="console-input" placeholder="Input Here" autocomplete="on">
-        <!-- Console Submit Button -->
-        <button type="button" id="console-submit-btn" class="rounded-btn">SEND</button>
-      </form>
-    </div>
-
-    <!-- Button Container -->
-    <div class="button-container">
-      <!-- Buttons -->
-      <ul>
-        <li><button id="start-btn" class="rounded-btn">START ALL</button></li>
-      </ul>
-      <ul>
-        <li><button id="stop-btn" class="rounded-btn stop-btn">STOP ALL</button></li>
-      </ul>
-      <ul>
-        <li><button id="deploy-btn" class="rounded-btn deploy-btn">DEPLOY-COMMANDS</button></li>
-      </ul>
-      <ul>
-        <li><button id="restart-btn" class="rounded-btn restart-btn">RESTART</button></li>
-      </ul>
-      <ul>
-        <li><button id="delete-btn" class="rounded-btn delete-btn">DELETE-COMMANDS</button></li>
-      </ul>
-
-      <!-- Stopwatch Container -->
-      <div class="stopwatch-container">
-        <p id="stopwatch">00:00:00</p>
-      </div>
-    </div>
   </body>
   
   <script>
