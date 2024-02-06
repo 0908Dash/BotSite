@@ -7,7 +7,7 @@
   <link rel="stylesheet" href="panel.css">
 </head>
 <body>
-  <button id="fullScreen" onclick="fullscreen()">
+  <button id="fullScreen" onclick="fullscreen()" style="width: 100px; height: 100px;">
     <img src="https://www.svgrepo.com/show/103811/full-screen.svg" alt="Full Screen">
   </button>
   
@@ -18,13 +18,15 @@
     <span class="slider round"></span>
   </label>
 
-  <label class="menuButton">
-    <span class="line1"><p>---</p></span>
-    <span class="line2"><p>---</p></span>
-    <span class="line3"><p>---</p></span>
-  </label>
+  <div id="menu">
+    <label class="menuButton" style="left: 10px;">
+      <span class="line1"><p>---</p></span>
+      <span class="line2"><p>---</p></span>
+      <span class="line3"><p>---</p></span>
+    </label>
+  </div>
 
-  <div class="nav">
+  <div class="nav" style="display: none; left: 10px;" id="nav">
     <a href="./addNew.html">Add New</a>
     <ul class="dirs">
       <li class="GolliCRAFT">
@@ -294,6 +296,8 @@ function processInputOnServer(input) {
   const restartBtn = document.getElementById('restart-btn'); 
   const deleteBtn = document.getElementById('delete-btn');
   const fullScreen = document.getElementById('fullScreen');
+  const menuBtn = document.getElementById('menu');
+  const nav = document.getElementById('nav');
 
   // Set initial display property for stop and restart buttons
   stopBtn.style.display = 'none';
@@ -374,7 +378,7 @@ function openFullscreen() {
         console.error(`Error executing action: ${error}`);
       });
   };
-  //-------------------------------------------------------------- Remainig Btn Function
+    
     const remainingBtn = document.getElementById('remaining-btn');
 
 // Function to check remaining bots and update button display
@@ -393,6 +397,15 @@ checkRemainingBots();
 
   // Call the function every 5 minutes
 setInterval(checkRemainingBots, 5 * 60 * 1000); // 5 minutes in milliseconds
+
+    menuBtn.addEventListener('click', () => {
+      const default = 'nav.style.display = \'none\'';
+      if (default) {
+        nav.style.display = 'inline-block';
+      } else {
+      default
+      }
+    })
   //-------------------------------------------------------------- Module Exports
   module.exports = { consoleTextarea };
 </script>
