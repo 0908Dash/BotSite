@@ -78,6 +78,9 @@
     <ul>
       <li><button id="delete-btn" class="rounded-btn delete-btn">DELETE-COMMANDS</button></li>
     </ul>
+    <ul>
+      <li><button id="remaining-btn" style="display=none" class="rounded-btn remaining-btn">START REMAINING</button></li>
+    </ul>
 
     <div class="stopwatch-container">
       <p id="stopwatch">00:00:00</p>
@@ -371,6 +374,25 @@ function openFullscreen() {
         console.error(`Error executing action: ${error}`);
       });
   };
+  //-------------------------------------------------------------- Remainig Btn Function
+    const remainingBtn = document.getElementById('remaining-btn');
+
+// Function to check remaining bots and update button display
+async function checkRemainingBots() {
+  const response = await fetch('/show-remaining-btn');
+  const data = await response.json();
+  if (data.remaining) {
+    remainingBtn.style.display = 'inline-block';
+  } else {
+    remainingBtn.style.display = 'none';
+  }
+}
+
+// Call the function when the page loads
+checkRemainingBots();
+
+  // Call the function every 5 minutes
+setInterval(checkRemainingBots, 5 * 60 * 1000); // 5 minutes in milliseconds
   //-------------------------------------------------------------- Module Exports
   module.exports = { consoleTextarea };
 </script>
