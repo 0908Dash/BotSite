@@ -107,6 +107,10 @@ console.log = function (message) {
 window.originalConsoleLog = console.log;
 
 //-------------------------- Health Check
+  function displayMessage(message) {
+  console.log(message);
+}
+  
 function performHealthCheck() {
   fetch('https://4x7xb1xb-1119.use2.devtunnels.ms/')
     .then(response => {
@@ -115,30 +119,28 @@ function performHealthCheck() {
       } else {
         console.error('Server 1119 is not reachable');
         displayMessage('Connection lost. Please check your internet connection.');
-      }
-    })
-    .catch(error => {
-      console.error('Error during health check:', error);
-      displayMessage('Connection lost. Please check your internet connection.');
-    });
+        displayMessage('Trying Server 1120...');
 
-  fetch('https://4x7xb1xb-1120.use2.devtunnels.ms/')
+        fetch('https://4x7xb1xb-1120.use2.devtunnels.ms/')
     .then(response => {
       if (response.ok) {
         console.log('Server 1120 is reachable');
       } else {
         console.error('Server 1120 is not reachable');
         displayMessage('Connection lost. Please check your internet connection.');
+        displayMessage('Both Servers are offline right now.')
       }
     })
     .catch(error => {
       console.error('Error during health check:', error);
       displayMessage('Connection lost. Please check your internet connection.');
     });
-}
-
-function displayMessage(message) {
-  console.log(message);
+      }
+    })
+    .catch(error => {
+      console.error('Error during health check:', error);
+      displayMessage('Connection lost. Please check your internet connection.');
+    });
 }
 
 setInterval(performHealthCheck, 30000);
