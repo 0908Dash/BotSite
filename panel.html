@@ -10,7 +10,7 @@
   <h1>Main Panel</h1>
 
   <div id="menu">
-    <label class="menuButton">
+    <label class="menuButton" id="menu-btn">
       <span class="line1"><p>------</p></span>
       <span class="line2"><p>------</p></span>
       <span class="line3"><p>------</p></span>
@@ -274,7 +274,7 @@ function processInputOnServer(input) {
   const restartBtn = document.getElementById('restart-btn'); 
   const deleteBtn = document.getElementById('delete-btn');
   const fullScreen = document.getElementById('fullScreen');
-  const menuBtn = document.getElementById('menu');
+  const menuBtn = document.getElementById('menu-btn');
   const nav = document.getElementById('nav');
 
   // Set initial display property for stop and restart buttons
@@ -334,18 +334,6 @@ function processInputOnServer(input) {
     /* Get the element you want displayed in fullscreen mode (the body in this case): */
 var elem = document.body;
 
-/* When the openFullscreen() function is executed, open the webpage in fullscreen. */
-function openFullscreen() {
-  if (elem.requestFullscreen) {
-    elem.requestFullscreen();
-  } else if (elem.webkitRequestFullscreen) { /* Safari */
-    elem.webkitRequestFullscreen();
-  } else if (elem.msRequestFullscreen) { /* IE11 */
-    elem.msRequestFullscreen();
-  }
-}
-  });
-    
   function makeRequest(endpoint) {
     fetch(endpoint)
       .then(response => response.json())
