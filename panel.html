@@ -9,11 +9,6 @@
 <body>  
   <h1>Main Panel</h1>
 
-  <label class="switch" style="left: 10px; top: 110px;">
-    <input type="checkbox" id="dark-mode-toggle">
-    <span class="slider round"></span>
-  </label>
-
   <div id="menu">
     <label class="menuButton" style="left: 10px; top: 120px;">
       <span class="line1"><p>---</p></span>
@@ -111,34 +106,6 @@
 
   window.originalConsoleLog = console.log;
 
-//-------------------------- Dark Mode Toggle
-const toggleSwitch = document.querySelector('#dark-mode-toggle');
-
-function switchTheme(event) {
-  console.log('Switching theme...'); // Add this line for debugging
-  
-  if (event.target.checked) {
-    document.documentElement.setAttribute('data-theme', 'dark');
-    localStorage.setItem('theme', 'dark');
-    console.log('Dark Mode Active');
-  } else {
-    document.documentElement.setAttribute('data-theme', 'light');
-    localStorage.setItem('theme', 'light');
-    console.log('Light Mode Active')
-  }
-}
-
-toggleSwitch.addEventListener('change', switchTheme, false);
-
-const currentTheme = localStorage.getItem('theme') || 'light';
-
-if (currentTheme) {
-  document.documentElement.setAttribute('data-theme', currentTheme);
-
-  if (currentTheme === 'dark') {
-    toggleSwitch.checked = true;
-  }
-}
 //-------------------------- Health Check
 function performHealthCheck() {
   fetch('https://4x7xb1xb-1119.use2.devtunnels.ms/')
