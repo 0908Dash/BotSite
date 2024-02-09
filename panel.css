@@ -119,7 +119,7 @@ a {
 }
 
 .rounded-btn:hover {
-  background-color: #2980b9;
+  background-color: #191970;
 }
 
 .stop-btn {
@@ -152,6 +152,8 @@ a {
 /* Responsive Design */
 @media (max-width: 768px) {
   #console {
-    width: 100%;
+    width: 47%;
+    left: 25px;
+    top: 200px;
   }
 }
