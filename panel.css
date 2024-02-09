@@ -31,6 +31,8 @@ button:hover {
   margin: 10px;
   position: relative;
   user-select: none;
+  left: 10px;
+  top: 120px;
 }
 
 .line1, .line2, .line3 {
@@ -58,10 +60,12 @@ button:hover {
 
 /* Navigation */
 .nav {
-  display: flex;
+  display: none;
   flex-direction: column;
   align-items: center;
   margin-top: 20px;
+  left: 10px;
+  top: 125px;
 }
 
 ul, li {
@@ -83,6 +87,10 @@ a {
 .dropdown {
   display: none;
   margin-left: 15px;
+}
+
+.dropdown:hover {
+  display: block;
 }
 
 .dirs:hover .dropdown {
