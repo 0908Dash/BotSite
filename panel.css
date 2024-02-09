@@ -190,28 +190,6 @@ a {
   margin-top: 20px;
 }
 
-/* Full Screen Button */
-#fullScreen {
-  position: fixed;
-  top: 10px;
-  right: 10px;
-  cursor: pointer;
-}
-
-/* Dark Mode */
-[data-theme='dark'] {
-  background-color: #333;
-  color: #fff;
-}
-
-.switch input:checked + .slider {
-  background-color: #333;
-}
-
-.slider:before {
-  background-color: #333;
-}
-
 /* General Styling */
 .container {
   max-width: 1200px;
