@@ -146,6 +146,11 @@ a {
   background-color: #191970;
 }
 
+.remaining-btn {
+  display: none;
+  background-color: #191970;
+}
+
 .stopwatch-container {
   margin-top: 20px;
 }
