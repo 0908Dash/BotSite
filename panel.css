@@ -24,55 +24,6 @@ button:hover {
   background-color: #2980b9;
 }
 
-.switch {
-  position: relative;
-  display: inline-block;
-  width: 60px;
-  height: 34px;
-}
-
-.switch input {
-  display: none;
-}
-
-.slider {
-  position: absolute;
-  cursor: pointer;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: #ccc;
-  -webkit-transition: .4s;
-  transition: .4s;
-}
-
-.slider:before {
-  position: absolute;
-  content: "";
-  height: 26px;
-  width: 26px;
-  left: 4px;
-  bottom: 4px;
-  background-color: white;
-  -webkit-transition: .4s;
-  transition: .4s;
-}
-
-input:checked + .slider {
-  background-color: #2196F3;
-}
-
-input:focus + .slider {
-  box-shadow: 0 0 1px #2196F3;
-}
-
-input:checked + .slider:before {
-  -webkit-transform: translateX(26px);
-  -ms-transform: translateX(26px);
-  transform: translateX(26px);
-}
-
 /* Menu Button */
 .menuButton {
   cursor: pointer;
@@ -145,9 +96,10 @@ a {
 }
 
 #console {
-  width: 80%;
+  width: 500px;
   height: 100px;
   resize: none;
+  text-align: left;
 }
 
 #console-form {
@@ -160,7 +112,7 @@ a {
 
 .rounded-btn {
   border-radius: 5px;
-  background-color: #3498db;
+  background-color: #191970;
   color: #fff;
   padding: 5px 10px;
   cursor: pointer;
@@ -171,19 +123,19 @@ a {
 }
 
 .stop-btn {
-  background-color: #e74c3c;
+  background-color: #191970;
 }
 
 .deploy-btn {
-  background-color: #2ecc71;
+  background-color: #191970;
 }
 
 .restart-btn {
-  background-color: #f39c12;
+  background-color: #191970;
 }
 
 .delete-btn {
-  background-color: #e74c3c;
+  background-color: #191970;
 }
 
 .stopwatch-container {
