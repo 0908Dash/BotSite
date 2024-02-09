@@ -80,31 +80,31 @@
     </div>
   </div>
     
-  </body>
+</body>
   
-  <script>
-    // Function to format the current date and time as YYYY-MM-DD HH:mm:ss
-  function getCurrentDateTime() {
-    const now = new Date();
-    const year = now.getFullYear();
-    const month = (now.getMonth() + 1).toString().padStart(2, '0');
-    const day = now.getDate().toString().padStart(2, '0');
-    const hours = now.getHours().toString().padStart(2, '0');
-    const minutes = now.getMinutes().toString().padStart(2, '0');
-    const seconds = now.getSeconds().toString().padStart(2, '0');
-    return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
-  }
+<script>
+// Function to format the current date and time as YYYY-MM-DD HH:mm:ss
+function getCurrentDateTime() {
+  const now = new Date();
+  const year = now.getFullYear();
+  const month = (now.getMonth() + 1).toString().padStart(2, '0');
+  const day = now.getDate().toString().padStart(2, '0');
+  const hours = now.getHours().toString().padStart(2, '0');
+  const minutes = now.getMinutes().toString().padStart(2, '0');
+  const seconds = now.getSeconds().toString().padStart(2, '0');
+  return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
+}
 
-  //-------------------------- Override Console Log Function
-  const consoleTextarea = document.getElementById('console');
+//-------------------------- Override Console Log Function
+const consoleTextarea = document.getElementById('console');
 
-  console.log = function (message) {
-    window.originalConsoleLog(message);
-    const currentDateTime = getCurrentDateTime();
-    consoleTextarea.value += `[${currentDateTime}] ${message}\n`;
-  };
+console.log = function (message) {
+  window.originalConsoleLog(message);
+  const currentDateTime = getCurrentDateTime();
+  consoleTextarea.value += `[${currentDateTime}] ${message}\n`;
+};
 
-  window.originalConsoleLog = console.log;
+window.originalConsoleLog = console.log;
 
 //-------------------------- Health Check
 function performHealthCheck() {
@@ -135,7 +135,6 @@ function performHealthCheck() {
       console.error('Error during health check:', error);
       displayMessage('Connection lost. Please check your internet connection.');
     });
-
 }
 
 function displayMessage(message) {
@@ -172,8 +171,7 @@ consoleSubmitBtn.addEventListener('click', function (event) {
 });
 
 function processInputOnServer(input) {
-  // Send an HTTP request to the server with the user input
-  fetch('https://4x7xb1xb-1119.use2.devtunnels.ms/process-input', {
+  return fetch('https://4x7xb1xb-1119.use2.devtunnels.ms/process-input', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -182,196 +180,201 @@ function processInputOnServer(input) {
       input: input,
     }),
   })
-    .then(response => response.json())
-    .then(data => {
-      console.log(`Server Response: ${data.message}`);
-    })
-    .catch(error => {
-      console.error('Error processing input on the server:', error);
-    });
+  .then(response => response.json())
+  .then(data => {
+    console.log(`Server Response: ${data.message}`);
+  })
+  .catch(error => {
+    console.error('Error processing input on the server:', error);
+    throw error;
+  });
 }
 
 //-------------------------- Stopwatch Script
-  let stopwatchInterval;
-  let milliseconds = 0;
-  let seconds = 0;
-  let minutes = 0;
-  let hours = 0;
-  let days = 0;
-  let months = 0;
-  let years = 0;
+let stopwatchInterval;
+let milliseconds = 0;
+let seconds = 0;
+let minutes = 0;
+let hours = 0;
+let days = 0;
+let months = 0;
+let years = 0;
 
-  function startStopwatch() {
-    stopwatchInterval = setInterval(updateStopwatch, 1); // Run every millisecond
-  }
+function startStopwatch() {
+  stopwatchInterval = setInterval(updateStopwatch, 1); // Run every millisecond
+}
 
-  function stopStopwatch() {
-    clearInterval(stopwatchInterval);
-  }
+function stopStopwatch() {
+  clearInterval(stopwatchInterval);
+}
 
-  function resetStopwatch() {
-    clearInterval(stopwatchInterval);
+function resetStopwatch() {
+  clearInterval(stopwatchInterval);
+  milliseconds = 0;
+  seconds = 0;
+  minutes = 0;
+  hours = 0;
+  days = 0;
+  months = 0;
+  years = 0;
+  document.getElementById('stopwatch').innerText = '0:0:0';
+}
+
+function updateStopwatch() {
+  milliseconds++;
+
+  if (milliseconds === 1000) {
     milliseconds = 0;
-    seconds = 0;
-    minutes = 0;
-    hours = 0;
-    days = 0;
-    months = 0;
-    years = 0;
-    document.getElementById('stopwatch').innerText = '0:0:0';
-  }
+    seconds++;
 
-  function updateStopwatch() {
-    milliseconds++;
+    if (seconds === 60) {
+      seconds = 0;
+      minutes++;
 
-    if (milliseconds === 1000) {
-      milliseconds = 0;
-      seconds++;
+      if (minutes === 60) {
+        minutes = 0;
+        hours++;
 
-      if (seconds === 60) {
-        seconds = 0;
-        minutes++;
+        if (hours === 24) {
+          hours = 0;
+          days++;
 
-        if (minutes === 60) {
-          minutes = 0;
-          hours++;
+          // Assuming 30 days in a month for simplicity
+          if (days === 30) {
+            days = 0;
+            months++;
 
-          if (hours === 24) {
-            hours = 0;
-            days++;
-
-            // Assuming 30 days in a month for simplicity
-            if (days === 30) {
-              days = 0;
-              months++;
-
-              if (months === 12) {
-                months = 0;
-                years++;
-              }
+            if (months === 12) {
+              months = 0;
+              years++;
             }
           }
         }
       }
     }
-
-    const formattedTime = `${hours}:${minutes}:${seconds}`;
-    document.getElementById('stopwatch').innerText = formattedTime;
   }
 
-  function padNumber(num, size) {
-    let str = num.toString();
-    while (str.length < size) {
-      str = '0' + str;
-    }
-    return str;
+  const formattedTime = `${hours}:${minutes}:${seconds}`;
+  document.getElementById('stopwatch').innerText = formattedTime;
+}
+
+function padNumber(num, size) {
+  let str = num.toString();
+  while (str.length < size) {
+    str = '0' + str;
   }
+  return str;
+}
 
-  //-------------------------- Button Actions
-  const startBtn = document.getElementById('start-btn');
-  const stopBtn = document.getElementById('stop-btn');
-  const deployBtn = document.getElementById('deploy-btn');
-  const restartBtn = document.getElementById('restart-btn'); 
-  const deleteBtn = document.getElementById('delete-btn');
-  const fullScreen = document.getElementById('fullScreen');
-  const menuBtn = document.getElementById('menu-btn');
-  const nav = document.getElementById('nav');
+//-------------------------- Button Actions
+const startBtn = document.getElementById('start-btn');
+const stopBtn = document.getElementById('stop-btn');
+const deployBtn = document.getElementById('deploy-btn');
+const restartBtn = document.getElementById('restart-btn'); 
+const deleteBtn = document.getElementById('delete-btn');
+const remainingBtn = document.getElementById('remaining-btn');
 
-  // Set initial display property for stop and restart buttons
+// Set initial display property for stop and restart buttons
+stopBtn.style.display = 'none';
+restartBtn.style.display = 'none';
+
+startBtn.addEventListener('click', () => {
+  makeRequest('https://4x7xb1xb-1119.use2.devtunnels.ms/start-all');
+
+  // Show the stop and restart buttons after starting the bot
+  stopBtn.style.display = 'inline-block';
+  restartBtn.style.display = 'inline-block';
+
+  // Hide start, deploy, and delete buttons
+  startBtn.style.display = 'none';
+  deployBtn.style.display = 'none';
+  deleteBtn.style.display = 'none';
+
+  startStopwatch();
+});
+
+stopBtn.addEventListener('click', () => {
+  makeRequest('https://4x7xb1xb-1119.use2.devtunnels.ms/stop-all');
+
+  // Show the start, deploy, and delete buttons after stopping the bot
+  startBtn.style.display = 'inline-block';
+  deployBtn.style.display = 'inline-block';
+  deleteBtn.style.display = 'inline-block';
+
+  // Hide stop and restart buttons
   stopBtn.style.display = 'none';
   restartBtn.style.display = 'none';
 
-  startBtn.addEventListener('click', () => {
-    makeRequest('https://4x7xb1xb-1119.use2.devtunnels.ms/start-all');
+  stopStopwatch();
 
-    // Show the stop and restart buttons after starting the bot
-    stopBtn.style.display = 'inline-block';
-    restartBtn.style.display = 'inline-block';
+  setTimeout(resetStopwatch, 30000); //set 30-second delay
+});
 
-    // Hide start, deploy, and delete buttons
-    startBtn.style.display = 'none';
-    deployBtn.style.display = 'none';
-    deleteBtn.style.display = 'none';
+deployBtn.addEventListener('click', () => {
+  makeRequest('https://4x7xb1xb-1119.use2.devtunnels.ms/deploy-commands-all');
+});
 
-    startStopwatch();
-  });
+restartBtn.addEventListener('click', () => {
+  makeRequest('https://4x7xb1xb-1119.use2.devtunnels.ms/restart-bot-all');
 
-  stopBtn.addEventListener('click', () => {
-    makeRequest('https://4x7xb1xb-1119.use2.devtunnels.ms/stop-all');
+  stopStopwatch();
+  resetStopwatch();
 
-    // Show the start, deploy, and delete buttons after stopping the bot
-    startBtn.style.display = 'inline-block';
-    deployBtn.style.display = 'inline-block';
-    deleteBtn.style.display = 'inline-block';
+  setTimeout(startStopwatch, 1); //set 1-millisecond delay
+});
 
-    // Hide stop and restart buttons
-    stopBtn.style.display = 'none';
-    restartBtn.style.display = 'none';
+deleteBtn.addEventListener('click', () => {
+  makeRequest('https://4x7xb1xb-1119.use2.devtunnels.ms/delete-commands-all');
+});
 
-    stopStopwatch();
-
-    setTimeout(resetStopwatch(), 30000); //set delay 30 seconds (30000 milliseconds = 30 seconds)
-  });
-
-  deployBtn.addEventListener('click', () => {
-    makeRequest('https://4x7xb1xb-1119.use2.devtunnels.ms/deploy-commands-all');
-  });
-
-  restartBtn.addEventListener('click', () => {
-    makeRequest('https://4x7xb1xb-1119.use2.devtunnels.ms/restart-bot-all');
-
-    stopStopwatch();
-    resetStopwatch();
-
-    setTimeout(startStopwatch, 1); //set 1 millisecond delay
-  });
-
-  deleteBtn.addEventListener('click', () => {
-    makeRequest('https://4x7xb1xb-1119.use2.devtunnels.ms/delete-commands-all');
-  });
-
-  fullScreen.addEventListener('click', () => {
-    /* Get the element you want displayed in fullscreen mode (the body in this case): */
-var elem = document.body;
-
-  function makeRequest(endpoint) {
-    fetch(endpoint)
-      .then(response => response.json())
-      .then(data => {
-        console.log(`Action completed: ${data.status}`);
-      })
-      .catch(error => {
-        console.error(`Error executing action: ${error}`);
-      });
-  };
-    
-    const remainingBtn = document.getElementById('remaining-btn');
-
-// Function to check remaining bots and update button display
+//-------------------------- Remaining Bots Check
 async function checkRemainingBots() {
-  const response = await fetch('/show-remaining-btn');
-  const data = await response.json();
-  if (data.remaining) {
-    remainingBtn.style.display = 'inline-block';
-  } else {
-    remainingBtn.style.display = 'none';
+  try {
+    const response = await fetch('/show-remaining-btn');
+    const data = await response.json();
+    if (data.remaining) {
+      remainingBtn.style.display = 'inline-block';
+    } else {
+      remainingBtn.style.display = 'none';
+    }
+  } catch (error) {
+    console.error('Error checking remaining bots:', error);
   }
 }
 
 // Call the function when the page loads
 checkRemainingBots();
 
-  // Call the function every 5 minutes
-setInterval(checkRemainingBots, 5 * 60 * 1000); // 5 minutes in milliseconds
+// Call the function every 5 minutes
+const remainingBotsInterval = setInterval(checkRemainingBots, 5 * 60 * 1000);
 
-    menuBtn.addEventListener('click', () => {
-      if (nav.style.display = 'none') {
-        nav.style.display = 'inline-block';
-      } else {
-      nav.style.display = 'none'
+//-------------------------- Menu Button
+const menuBtn = document.getElementById('menu-btn');
+const nav = document.getElementById('nav');
+
+menuBtn.addEventListener('click', () => {
+  if (nav.style.display === 'none') {
+    nav.style.display = 'inline-block';
+  } else {
+    nav.style.display = 'none';
+  }
+});
+
+//----------------------------------------- Function to make HTTP requests
+function makeRequest(endpoint) {
+  fetch(endpoint)
+    .then(response => {
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
       }
+      return response.json();
     })
-  //-------------------------------------------------------------- Module Exports
-  module.exports = { consoleTextarea };
+    .then(data => {
+      console.log(`Action completed: ${data.status}`);
+    })
+    .catch(error => {
+      console.error(`Error executing action: ${error}`);
+    });
+}
 </script>
 </html>
