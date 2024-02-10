@@ -348,8 +348,11 @@ const nav = document.getElementById('nav');
 
 menuBtn.addEventListener('click', () => {
   menuBtn.classList.toggle('open');
-  nav.style.display = 'block'
-  nav.dirs.style.float = 'right'
+  if (nav.style.display === 'none') {
+    nav.style.display = 'flex'
+  } else {
+    nav.style.display = 'none'
+  }
 });
 
 //----------------------------------------- Function to make HTTP requests
