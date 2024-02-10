@@ -348,7 +348,8 @@ const nav = document.getElementById('nav');
 
 menuBtn.addEventListener('click', () => {
   menuBtn.classList.toggle('open');
-  nav.classList.toggle('open'); // toggle the display of the navigation elements
+  nav.style.display = 'block'
+  nav.dirs.style.float = 'right'
 });
 
 //----------------------------------------- Function to make HTTP requests
