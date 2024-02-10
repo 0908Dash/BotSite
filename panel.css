@@ -87,7 +87,7 @@ button:hover {
   top: 125px;
 }
 
-#nav.open {
+.nav.open {
   display: block;
   float: right;
 }
@@ -104,6 +104,10 @@ a {
   font-weight: bold;
 }
 
+.nav {
+  float: right;
+}
+
 .dirs li {
   margin-top: 5px;
 }
@@ -111,6 +115,7 @@ a {
 .dirs {
   float: right;
 }
+
 
 /* Target the dropdown for the GolliCRAFT directory */
 #GolliCRAFT .dropdown {
