@@ -34,7 +34,8 @@ button:hover {
     display: block;
     width: 30px; /* Adjust as needed */
     height: 20px; /* Adjust as needed */
-    position: relative;
+    top: 20px;
+    left: 15px;
     cursor: pointer;
 }
 
