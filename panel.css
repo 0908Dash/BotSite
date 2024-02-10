@@ -48,7 +48,7 @@ button:hover {
     height: 3px; /* Adjust thickness */
     background-color: #333; /* Adjust color */
     position: absolute;
-    transition: transform 0.3s ease; /* Add smooth animation */
+    transition: transform 0.4s ease; /* Add smooth animation */
 }
 
 /* Position the lines to form the hamburger shape */
@@ -67,6 +67,7 @@ button:hover {
 
 /* Rotate the lines to form the 'X' shape when menu is open */
 #menu-btn.open .line-1 {
+  color: #ff0000
     transform: rotate(45deg) translate(5px, 5px);
 }
 
@@ -75,6 +76,7 @@ button:hover {
 }
 
 #menu-btn.open .line-3 {
+  color: #ff0000
     transform: rotate(-45deg) translate(5px, -5px);
 }
 
