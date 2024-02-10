@@ -9,45 +9,38 @@
 <body>  
   <div class="top-bar">
     <h1>Main Panel</h1>
+  </div>
 
-    <div id="menu">
-      <label class="menuButton" id="menu-btn">
-          <span class="line-1"></span>
-          <span class="line-2"></span>
-          <span class="line-3"></span>
-      </label>
-    </div>
-
-  <div class="nav" id="nav">
-    <a href="./addNew.html">Add New</a>
-    <ul class="dirs">
-      <li class="GolliCRAFT" id="GolliCRAFT">
-  <a href="./panels/GolliCRAFT/GolliCRAFT.html">GolliCRAFT</a>
-  <ul class="dropdown">
-    <li><a href="./panels/GolliCRAFT/ALLPanel.html">All Panel</a></li>
-    <li><a href="./panels/GolliCRAFT/mainPanel.html">Main Panel</a></li>
-    <li><a href="./panels/GolliCRAFT/musicPanel.html">Music Panel</a></li>
+  <nav id="menu">
+  <input type='checkbox' id='responsive-menu' onclick='updatemenu()'><label></label>
+  <ul>
+    <li><a href="./addNew.html">Add New</a></li>
+    <li>
+      <a class='dropdown-arrow' href='./panels/GolliCRAFT/GolliCRAFT.html'>GolliCRAFT</a>
+      <ul class='sub-menus'>
+        <li><a href="./panels/GolliCRAFT/ALLPanel.html">All Panel</a></li>
+        <li><a href="./panels/GolliCRAFT/mainPanel.html">Main Panel</a></li>
+        <li><a href="./panels/GolliCRAFT/musicPanel.html">Music Panel</a></li>
+      </ul>
+    </li>
+    <li>
+      <a class='dropdown-arrow' href='./panels/ToppedCRAFT/ToppedCRAFT.html'>ToppedCRAFT</a>
+      <ul class='sub-menus'>
+        <li><a href="./panels/ToppedCRAFT/ALLPanel.html">All Panel</a></li>
+        <li><a href="./panels/ToppedCRAFT/mainPanel.html">Main Panel</a></li>
+        <li><a href="./panels/ToppedCRAFT/musicPanel.html">Music Panel</a></li>
+      </ul>
+    </li>
+    <li>
+      <a href='https://bots.gollicraft.com/panels/ClientServer/ALLPanel.html'>Client Server</a>
+      <ul class='sub-menus'>
+        <li><a href="./panels/ClientServer/ALLPanel.html">All Panel</a></li>
+        <li><a href="./panels/ClientServer/mainPanel.html">Main Panel</a></li>
+        <li><a href="./panels/ClientServer/musicPanel.html">Music Panel</a></li>
+      </ul>
+    </li>
   </ul>
-</li>
-      <li class="ClientServer" id="ClientServer">
-        <a href="./panels/ClientServer/ClientServer.html">Client Server</a>
-        <ul class="dropdown">
-          <li><a href="./panels/ClientServer/ALLPanel.html">All Panel</a></li>
-          <li><a href="./panels/ClientServer/mainPanel.html">Main Panel</a></li>
-          <li><a href="./panels/ClientServer/musicPanel.html">Music Panel</a></li>
-        </ul>
-      </li>
-      <li class="ToppedCRAFT" id="ToppedCRAFT">
-        <a href="./panels/ToppedCRAFT/ToppedCRAFT.html">ToppedCRAFT</a>
-        <ul class="dropdown">
-          <li><a href="./panels/ToppedCRAFT/ALLPanel.html">All Panel</a></li>
-          <li><a href="./panels/ToppedCRAFT/mainPanel.html">Main Panel</a></li>
-          <li><a href="./panels/ToppedCRAFT/musicPanel.html">Music Panel</a></li>
-        </ul>
-      </li>
-    </ul>
-  </div>
-  </div>
+</nav>
     
   <div class="console-container">
     <textarea id="console" rows="10" cols="50" readonly></textarea>
@@ -343,17 +336,14 @@ checkRemainingBots();
 const remainingBotsInterval = setInterval(checkRemainingBots, 5 * 60 * 1000);
 
 //-------------------------- Menu Button
-const menuBtn = document.getElementById('menu-btn');
-const nav = document.getElementById('nav');
-
-menuBtn.addEventListener('click', () => {
-  menuBtn.classList.toggle('open');
-  if (nav.style.display === 'none') {
-    nav.style.display = 'flex'
-  } else {
-    nav.style.display = 'none'
+function updatemenu() {
+  if (document.getElementById('responsive-menu').checked == true) {
+    document.getElementById('menu').style.borderBottomRightRadius = '0';
+    document.getElementById('menu').style.borderBottomLeftRadius = '0';
+  }else{
+    document.getElementById('menu').style.borderRadius = '10px';
   }
-});
+}
 
 //----------------------------------------- Function to make HTTP requests
 function makeRequest(endpoint) {
