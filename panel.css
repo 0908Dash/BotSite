@@ -119,7 +119,7 @@ a {
 }
 
 #menu {
-	background: #4682B4;
+	background: #4582B4;
 	height: 50px;
 	border-radius: 0px;
 }
@@ -149,8 +149,8 @@ a {
 	margin-left: 5px;
 }
 #menu li a:hover {
-	color: #0099CC;
-	background: #F2F2F2;
+	color: #000000;
+	background: #4582B4;
 }
 #menu input {
 	display: none;
@@ -178,7 +178,7 @@ a {
 	height: auto;
 	overflow: hidden;
 	width: 170px;
-	background: #444444;
+	background: #4582B4;
 	position: absolute;
 	z-index: 99;
 	display: none;
@@ -189,15 +189,15 @@ a {
 	width: 100%;
 }
 #menu ul.sub-menus a {
-	color: #FFFFFF;
+	color: #000000;
 	font-size: 16px;
 }
 #menu li:hover ul.sub-menus {
 	display: block
 }
 #menu ul.sub-menus a:hover{
-	background: #F2F2F2;
-	color: #444444;
+	background: #4582B4;
+	color: #FFFFFF;
 }
 
 /* Responsive Design */
@@ -218,7 +218,7 @@ a {
   }
 
   #menu {position:relative}
-	#menu ul {background:#444444;position:absolute;top:100%;right:0;left:0;z-index:3;height:auto;display:none;text-align:left;}
+	#menu ul {background:#4582B4;position:absolute;top:100%;right:0;left:0;z-index:3;height:auto;display:none;text-align:left;}
 	#menu ul.sub-menus {width:100%;position:static;}
 	#menu ul.sub-menus a {padding-left:30px;}
 	#menu li {display:block;float:none;width:auto;}
