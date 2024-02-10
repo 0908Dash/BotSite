@@ -120,6 +120,10 @@ a {
   display: block;
 }
 
+#GolliCRAFT:active .dropdown {
+  display: block;
+}
+
 /* Target the dropdown for the ClientServer directory */
 #ClientServer .dropdown {
   display: none;
@@ -133,6 +137,10 @@ a {
   display: block;
 }
 
+#ClientServer:active .dropdown {
+  display: block;
+}
+
 /* Target the dropdown for the ToppedCRAFT directory */
 #ToppedCRAFT .dropdown {
   display: none;
@@ -143,6 +151,10 @@ a {
 
 /* Show the dropdown when hovering over the ToppedCRAFT directory */
 #ToppedCRAFT:hover .dropdown {
+  display: block;
+}
+
+#ToppedCRAFT:active .dropdown {
   display: block;
 }
 
