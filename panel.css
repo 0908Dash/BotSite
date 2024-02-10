@@ -34,9 +34,14 @@ button:hover {
     display: block;
     width: 30px; /* Adjust as needed */
     height: 20px; /* Adjust as needed */
-    top: 20px;
-    left: 15px;
+    position: absolute;
+    top: 10px;
+    left: 10px;
     cursor: pointer;
+}
+
+#menuBtn {
+  display: inline-block;
 }
 
 /* Create the three lines of the hamburger icon */
@@ -91,7 +96,7 @@ button:hover {
 }
 
 .nav.open {
-  display: block;
+  display: flex;
 }
 
 ul, li {
