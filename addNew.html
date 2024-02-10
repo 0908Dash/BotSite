@@ -69,7 +69,7 @@
 
         <button type="button" onclick="submitForm()">Submit</button>
 
-        <button onclick="returnToMainPanel()">Return to Main Panel</button>
+        <button onclick="backButton()">Return to Main Panel</button>
     </form>
 
     <script>
@@ -103,9 +103,8 @@
             .catch(error => console.error(error));
         }
 
-        function returnToMainPanel() {
-            // Redirect to ./panel.html
-            window.location.href = './panel.html';
+        function backButton() {
+            window.history.back();
         }
     </script>
 </body>
