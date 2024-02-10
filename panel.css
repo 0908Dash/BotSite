@@ -31,7 +31,7 @@ button:hover {
 
 /* Style the hamburger icon */
 .menuButton {
-    display: block;
+    display: flex;
     width: 30px; /* Adjust as needed */
     height: 20px; /* Adjust as needed */
     top: 10px;
