@@ -321,6 +321,14 @@ deleteBtn.addEventListener('click', () => {
   makeRequest('https://4x7xb1xb-1119.use2.devtunnels.ms/delete-commands-all');
 });
 
+  const menuBtn = document.getElementById('menu-btn');
+const nav = document.getElementById('nav');
+
+menuBtn.addEventListener('click', () => {
+  menuBtn.classList.toggle('open');
+  nav.classList.toggle('open'); // toggle the display of the navigation elements
+});
+  
 //-------------------------- Remaining Bots Check
 async function checkRemainingBots() {
   try {
