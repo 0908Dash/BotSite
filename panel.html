@@ -227,7 +227,6 @@ function updateStopwatch() {
           hours = 0;
           days++;
 
-          // Assuming 30 days in a month for simplicity
           if (days === 30) {
             days = 0;
             months++;
@@ -242,7 +241,7 @@ function updateStopwatch() {
     }
   }
 
-  const formattedTime = `${hours}:${minutes}:${seconds}`;
+  const formattedTime = `${padNumber(years, 4)}:${padNumber(months, 2)}:${padNumber(days, 2)}:${padNumber(hours, 2)}:${padNumber(minutes, 2)}:${padNumber(seconds, 2)}.${padNumber(milliseconds, 3)}`;
   document.getElementById('stopwatch').innerText = formattedTime;
 }
 
