@@ -179,14 +179,7 @@ function processInputOnServer(input) {
 }
 
 //-------------------------- Stopwatch Script
-let stopwatchInterval;
-let milliseconds = 0;
-let seconds = 0;
-let minutes = 0;
-let hours = 0;
-let days = 0;
-let months = 0;
-let years = 0;
+let stopwatchRunning = false; // Flag to indicate whether the stopwatch is running
 
 function startStopwatch() {
   let startTime = null;
@@ -206,19 +199,20 @@ function startStopwatch() {
     const formattedTime = `${padNumber(years, 4)}:${padNumber(months, 2)}:${padNumber(days, 2)}:${padNumber(hours, 2)}:${padNumber(minutes, 2)}:${padNumber(seconds, 2)}.${padNumber(milliseconds, 3)}`;
     document.getElementById('stopwatch').innerText = formattedTime;
 
-    requestAnimationFrame(update);
+    if (stopwatchRunning) {
+      requestAnimationFrame(update);
+    }
   }
 
+  stopwatchRunning = true;
   requestAnimationFrame(update);
 }
 
-
 function stopStopwatch() {
-  clearInterval(stopwatchInterval);
+  stopwatchRunning = false;
 }
 
 function resetStopwatch() {
-  clearInterval(stopwatchInterval);
   milliseconds = 0;
   seconds = 0;
   minutes = 0;
@@ -227,51 +221,6 @@ function resetStopwatch() {
   months = 0;
   years = 0;
   document.getElementById('stopwatch').innerText = '00:00:00.000';
-}
-
-function updateStopwatch() {
-  milliseconds++;
-
-  if (milliseconds === 1000) {
-    milliseconds = 0;
-    seconds++;
-
-    if (seconds === 60) {
-      seconds = 0;
-      minutes++;
-
-      if (minutes === 60) {
-        minutes = 0;
-        hours++;
-
-        if (hours === 24) {
-          hours = 0;
-          days++;
-
-          if (days === 30) {
-            days = 0;
-            months++;
-
-            if (months === 12) {
-              months = 0;
-              years++;
-            }
-          }
-        }
-      }
-    }
-  }
-
-  const formattedTime = `${padNumber(years, 4)}:${padNumber(months, 2)}:${padNumber(days, 2)}:${padNumber(hours, 2)}:${padNumber(minutes, 2)}:${padNumber(seconds, 2)}.${padNumber(milliseconds, 3)}`;
-  document.getElementById('stopwatch').innerText = formattedTime;
-}
-
-function padNumber(num, size) {
-  let str = num.toString();
-  while (str.length < size) {
-    str = '0' + str;
-  }
-  return str;
 }
 
 //-------------------------- Button Actions
