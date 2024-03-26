@@ -18,12 +18,25 @@
             height: 100vh;
         }
 
+        .container {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            max-width: 1200px;
+        }
+
         form {
             background-color: #fff;
             border-radius: 8px;
             padding: 20px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            width: 300px;
+            width: 45%; /* Adjust the width as needed */
+        }
+
+        iframe {
+            border: none;
+            width: 45%; /* Adjust the width as needed */
+            height: 400px; /* Set the height as needed */
         }
 
         label {
@@ -51,26 +64,30 @@
 </head>
 
 <body>
-    <form id="addBotForm">
-        <label for="serverName">Server Name:</label>
-        <input type="text" id="serverName" name="serverName" required>
+    <div class="container">
+        <form id="addBotForm">
+            <label for="serverName">Server Name:</label>
+            <input type="text" id="serverName" name="serverName" required>
 
-        <label for="botName">Bot Name:</label>
-        <input type="text" id="botName" name="botName" required>
+            <label for="botName">Bot Name:</label>
+            <input type="text" id="botName" name="botName" required>
 
-        <label for="botToken">Bot Token:</label>
-        <input type="text" id="botToken" name="botToken" required>
+            <label for="botToken">Bot Token:</label>
+            <input type="text" id="botToken" name="botToken" required>
 
-        <label for="clientId">Client ID:</label>
-        <input type="text" id="clientId" name="clientId" required>
+            <label for="clientId">Client ID:</label>
+            <input type="text" id="clientId" name="clientId" required>
 
-        <label for="publicIp">Public IP (Optional):</label>
-        <input type="text" id="publicIp" name="publicIp">
+            <label for="publicIp">Public IP (Optional):</label>
+            <input type="text" id="publicIp" name="publicIp">
 
-        <button type="button" onclick="submitForm()">Submit</button>
+            <button type="button" onclick="submitForm()">Submit</button>
 
-        <button onclick="backButton()">Return to Main Panel</button>
-    </form>
+            <button onclick="backButton()">Return to Main Panel</button>
+        </form>
+
+        <iframe src="https://www.whatismyip.com" height="400"></iframe>
+    </div>
 
     <script>
         function submitForm() {
