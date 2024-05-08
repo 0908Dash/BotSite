@@ -159,7 +159,7 @@ consoleSubmitBtn.addEventListener('click', function (event) {
 });
 
 function processInputOnServer(input) {
-  return fetch('https://4x7xb1xb-1119.use2.devtunnels.ms/process-input', {
+  return fetch('https://3nx3l3gk-1119.use2.devtunnels.ms/process-input', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -293,7 +293,7 @@ stopBtn.style.display = 'none';
 restartBtn.style.display = 'none';
 
 startBtn.addEventListener('click', () => {
-  makeRequest('https://4x7xb1xb-1119.use2.devtunnels.ms/start-all');
+  makeRequest('https://3nx3l3gk-1119.use2.devtunnels.ms/start-all');
 
   // Show the stop and restart buttons after starting the bot
   stopBtn.style.display = 'inline-block';
@@ -308,7 +308,7 @@ startBtn.addEventListener('click', () => {
 });
 
 stopBtn.addEventListener('click', () => {
-  makeRequest('https://4x7xb1xb-1119.use2.devtunnels.ms/stop-all');
+  makeRequest('https://3nx3l3gk-1119.use2.devtunnels.ms/stop-all');
 
   // Show the start, deploy, and delete buttons after stopping the bot
   startBtn.style.display = 'inline-block';
@@ -325,11 +325,11 @@ stopBtn.addEventListener('click', () => {
 });
 
 deployBtn.addEventListener('click', () => {
-  makeRequest('https://4x7xb1xb-1119.use2.devtunnels.ms/deploy-commands-all');
+  makeRequest('https://3nx3l3gk-1119.use2.devtunnels.ms/deploy-commands-all');
 });
 
 restartBtn.addEventListener('click', () => {
-  makeRequest('https://4x7xb1xb-1119.use2.devtunnels.ms/restart-bot-all');
+  makeRequest('https://3nx3l3gk-1119.use2.devtunnels.ms/restart-bot-all');
 
   stopStopwatch();
   resetStopwatch();
@@ -338,7 +338,7 @@ restartBtn.addEventListener('click', () => {
 });
 
 deleteBtn.addEventListener('click', () => {
-  makeRequest('https://4x7xb1xb-1119.use2.devtunnels.ms/delete-commands-all');
+  makeRequest('https://3nx3l3gk-1119.use2.devtunnels.ms/delete-commands-all');
 });
 
 //-------------------------- Remaining Bots Check
